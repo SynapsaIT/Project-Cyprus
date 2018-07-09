@@ -12,15 +12,12 @@
 
     <body>
 
-      <!--JavaScript at end of body for optimized loading-->
-      <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
-    </body>
-  </html>
+
 
 <?php
 
 $l = $_GET['l'];
-if(!isset($_POST['plik'])){
+if(!isset($_POST['file'])){
   echo '<html>
    <body>
     <form action=pass.php'.'?l='.$l.' method="POST" ENCTYPE="multipart/form-data">
@@ -48,3 +45,7 @@ if(!isset($_POST['plik'])){
 
 
 ?>
+  <!--JavaScript at end of body for optimized loading-->
+  <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+  </body>
+</html>
