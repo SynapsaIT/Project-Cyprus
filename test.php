@@ -11,6 +11,7 @@
     </head>
 
     <body>
+      <div class="container">
 
 
 
@@ -18,14 +19,13 @@
 
 $l = $_GET['l'];
 if(!isset($_POST['file'])){
-  echo '<html>
-   <body>
+  echo '
     <form action=pass.php'.'?l='.$l.' method="POST" ENCTYPE="multipart/form-data">
 
      <div class="file-field input-field">
         <div class="btn">
           <span>File</span>
-          <input type="file" name="file[]" multiple>
+          <input type="file" name="file[]" multiple accept="image/*">
         </div>
         <div class="file-path-wrapper">
           <input class="file-path validate" type="text" placeholder="Upload one or more files">
@@ -36,16 +36,15 @@ if(!isset($_POST['file'])){
      <i class="material-icons right">send</i>
      </button>
 
-    </form>
-   </body>
-  </html>';
+    </form>';
 }
 
 
 
 
 ?>
-  <!--JavaScript at end of body for optimized loading-->
+</div>
   <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+
   </body>
 </html>
