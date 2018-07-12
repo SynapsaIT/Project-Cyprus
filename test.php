@@ -14,8 +14,6 @@
     <body>
       <div class="container">
 
-
-
 <?php
 
 $l = $_GET['l'];
@@ -41,7 +39,7 @@ if(!isset($_POST['file'])){
      <div class="file-field input-field">
         <div class="btn">
           <span>Browse</span>
-          <input type="file" name="file[]" multiple accept="image/*">
+          <input type="file" name="file[]" multiple accept="image/*" capture="capture">
         </div>
         <div class="file-path-wrapper">
           <input class="file-path validate" type="text" placeholder="Upload one or more files">
@@ -58,7 +56,7 @@ if(!isset($_POST['file'])){
 
 
 
-?>
+?>>
 </div>
   <script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
