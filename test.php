@@ -41,18 +41,23 @@ if(!isset($_POST['file'])){
      <div class="file-field input-field">
         <div class="btn">
           <span>Browse</span>
-          <input type="file" name="file[]" multiple accept="image/*">
-        </div>
+          <input type="file" name="file[]" multiple accept="image/*" capture="capture">
+          </div>
+
         <div class="file-path-wrapper">
-          <input class="file-path validate" type="text" placeholder="Upload one or more files">
+          <input class="file-path validate" type="text" plahhceholder="Upload one or more files">
         </div>
       </div>
 
      <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-     <i class="material-icons right">send</i>
+     <i class="material-icons right">send</i><br/>
      </button>
-
+      <div id="xD" class="z-depth-2 file-field input-field" style="max-width:20vh; height:22vh; overflow: hidden"><input id="in" type="file" name="file[]" multiple accept="image/*" capture="capture"><img style="max-height: 22vh;" id="ph" class="materialboxed"/><i id="pc" class="material-icons responsive" style="margin-top:4vh; color:white;font-size:14vh;">add_a_photo</i></div>
     </form>';
+
+
+
+
 }
 
 
@@ -65,9 +70,39 @@ if(!isset($_POST['file'])){
   <script type="text/javascript">
 
     $(document).ready(function(){
+      $('#xD').css('background-color', 'gray');
       $('.modal').modal();
       $('#modal1').modal('open');
+      $('.materialboxed').materialbox();
+
+
+
     });
+
+    function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#ph').attr('src', e.target.result);
+                    $('#pc').hide();
+                    $('#in').hide();
+                    $('#xD').removeClass('file-field input-field');
+                    //$('#ph').css('max-width', '100%', 'height', '100%');
+
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+        $("#in").change(function(){
+            readURL(this);
+        });
+
+
+
 
 
   </script>

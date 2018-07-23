@@ -23,7 +23,7 @@ if (!file_exists($dir) && !is_dir($dir)) {
                echo "<h1>File uploaded successfully</h1>";
              }
              move_uploaded_file($_FILES['file']['tmp_name'][$i], 'pass/'.$l.'/'.$_FILES['file']['name'][$i]);
-        }//
+        }
 
     }
     else {
