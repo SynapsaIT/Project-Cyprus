@@ -14,8 +14,6 @@
     <body>
       <div class="container">
 
-
-
 <?php
 
 $l = $_GET['l'];
@@ -43,17 +41,18 @@ if(!isset($_POST['file'])){
           <span>Browse</span>
           <input type="file" name="file[]" multiple accept="image/*" capture="capture">
           </div>
-
-        <div class="file-path-wrapper">
-          <input class="file-path validate" type="text" plahhceholder="Upload one or more files">
         </div>
-      </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Upload one or more files">
+        </div>
 
-     <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-     <i class="material-icons right">send</i><br/>
-     </button>
-      <div id="xD" class="z-depth-2 file-field input-field" style="max-width:20vh; height:22vh; overflow: hidden"><input id="in" type="file" name="file[]" multiple accept="image/*" capture="capture"><img style="max-height: 22vh;" id="ph" class="materialboxed"/><i id="pc" class="material-icons responsive" style="margin-top:4vh; color:white;font-size:14vh;">add_a_photo</i></div>
-    </form>';
+
+       <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+       <i class="material-icons right">send</i><br/>
+       </button>
+        <div id="xD" class="z-depth-2 file-field input-field" style="width:20vh; height:22vh; overflow: hidden"><input id="in" type="file" name="file[]" multiple accept="image/*" capture="capture"><img style="width: 100%; height: 22vh; object-fit: cover;" id="ph" class="materialboxed"/><i id="pc" class="material-icons responsive" style="margin-top:4vh; color:white;font-size:14vh;">add_a_photo</i></div>
+      </form>
+    </div>';
 
 
 
@@ -74,6 +73,7 @@ if(!isset($_POST['file'])){
       $('.modal').modal();
       $('#modal1').modal('open');
       $('.materialboxed').materialbox();
+      $('#ph').hide();
 
 
 
@@ -91,7 +91,7 @@ if(!isset($_POST['file'])){
                     //$('#ph').css('max-width', '100%', 'height', '100%');
 
                 }
-
+                $('#ph').show();
                 reader.readAsDataURL(input.files[0]);
             }
         }
