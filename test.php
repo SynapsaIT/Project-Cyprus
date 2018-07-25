@@ -39,8 +39,7 @@ if(!isset($_POST['file'])){
      <div class="file-field input-field">
         <div class="btn">
           <span>Browse</span>
-          <input type="file" name="file[]" multiple accept="image/*" capture="capture">
-          </div>
+          <input type="file" name="file[]"  id="in" multiple accept="image/*"/>
         </div>
         <div class="file-path-wrapper">
           <input class="file-path validate" type="text" placeholder="Upload one or more files">
@@ -50,9 +49,10 @@ if(!isset($_POST['file'])){
        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
        <i class="material-icons right">send</i><br/>
        </button>
-        <div id="xD" class="z-depth-2 file-field input-field" style="width:20vh; height:22vh; overflow: hidden"><input id="in" type="file" name="file[]" multiple accept="image/*" capture="capture"><img style="width: 100%; height: 22vh; object-fit: cover;" id="ph" class="materialboxed"/><i id="pc" class="material-icons responsive" style="margin-top:4vh; color:white;font-size:14vh;">add_a_photo</i></div>
-      </form>
-    </div>';
+
+      </form>';
+      echo '
+      ';
 
 
 
@@ -64,6 +64,7 @@ if(!isset($_POST['file'])){
 
 ?>
 </div>
+<div class="ph" style="height:22vh; width:20vh;"></div>
   <script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
   <script type="text/javascript">
@@ -73,26 +74,20 @@ if(!isset($_POST['file'])){
       $('.modal').modal();
       $('#modal1').modal('open');
       $('.materialboxed').materialbox();
-      $('#ph').hide();
-
 
 
     });
 
     function readURL(input) {
-            if (input.files && input.files[0]) {
+            if (input.files) {
+              for(var i=0; i<input.files.length; i++){
+                console.log(i);
                 var reader = new FileReader();
-
                 reader.onload = function (e) {
-                    $('#ph').attr('src', e.target.result);
-                    $('#pc').hide();
-                    $('#in').hide();
-                    $('#xD').removeClass('file-field input-field');
-                    //$('#ph').css('max-width', '100%', 'height', '100%');
-
+                    $('.ph').append('<img src='+e.target.result+' style="width:20vh; height:22vh; object-fit:cover;"/>');
                 }
-                $('#ph').show();
-                reader.readAsDataURL(input.files[0]);
+                reader.readAsDataURL(input.files[i]);
+              }
             }
         }
 
