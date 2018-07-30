@@ -8727,7 +8727,7 @@ $jscomp.polyfill = function (e, r, p, m) {
     autoClose: false,
 
     // the default output format for the input field value
-    format: 'mmm dd, yyyy',
+    format: 'yyyy-mm-dd',
 
     // Used to create date object from current input string
     parse: null,
@@ -8743,7 +8743,7 @@ $jscomp.polyfill = function (e, r, p, m) {
     disableDayFn: null,
 
     // First day of week (0: Sunday, 1: Monday etc)
-    firstDay: 0,
+    firstDay: 1,
 
     // The earliest date that can be selected
     minDate: null,
@@ -8751,7 +8751,7 @@ $jscomp.polyfill = function (e, r, p, m) {
     maxDate: null,
 
     // Number of years either side, or array of upper/lower range
-    yearRange: 10,
+    yearRange: 100,
 
     // used internally (don't config outside)
     minYear: 0,

@@ -7275,7 +7275,7 @@ body.keyboard-focused .select-dropdown.dropdown-content li:focus {
 }
 
 .select-dropdown li.optgroup.selected > span {
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 0.1);
 }
 
 .select-dropdown li.optgroup > span {

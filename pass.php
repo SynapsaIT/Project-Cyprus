@@ -1,4 +1,6 @@
 <?php
+require_once 'config/conf.php';
+require_once 'config/mysql.class.php';
 $l = $_GET['l'];
 $dir = 'pass/'.$l;
 if (!file_exists($dir) && !is_dir($dir)) {
@@ -23,6 +25,7 @@ if (!file_exists($dir) && !is_dir($dir)) {
                echo "<h1>File uploaded successfully</h1>";
              }
              move_uploaded_file($_FILES['file']['tmp_name'][$i], 'pass/'.$l.'/'.$_FILES['file']['name'][$i]);
+             dbAtt($_FILES['file']['name'][$i], $l);
         }
 
     }
@@ -35,5 +38,15 @@ if (!file_exists($dir) && !is_dir($dir)) {
 else {
   echo " <h1>Sejm szit egzists</h1>";
 }
-
+function dbAtt($file, $group_id){
+  global $db, $attachments_table;
+  $sql = "INSERT INTO $attachments_table VALUES (NULL, '$file', '$group_id')";
+  echo $sql." ";
+  if ($db->query($sql) === TRUE) {
+    echo "New record created successfully";
+  }
+  else{
+    echo "nope";
+  }
+}
  ?>
