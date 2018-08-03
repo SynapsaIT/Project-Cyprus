@@ -12,8 +12,10 @@
     <title>Test</title>
   </head>
   <body>
-
+    <script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="materialize/js/materialize.js"></script>
 <?php
+  session_start();
   require_once 'config/conf.php';
   require_once 'config/mysql.class.php';
   echo '
@@ -21,11 +23,11 @@
     <form class="center-align col s12" action="" method="POST" ENCTYPE="multipart/form-data">
       <div class="row">
         <div class="input-field col s6">
-          <input type=text id="login" name=log class="validate"/>
+          <input type=text id="login" name=log class="validate" required/>
           <label for="login">Login</label>
         </div>
         <div class="input-field col s6">
-          <input type=password id="password" name=pas class="validate"/>
+          <input type=password id="password" name=pas class="validate" required/>
           <label for="password">Password</label>
         </div>
       </div>
@@ -44,18 +46,26 @@
   if(isset($_POST['log']) || isset($_POST['pas'])){
     $wyniki = login($_POST['log']);
     foreach($wyniki as $rekord){
-      $test = sha1($_POST['pas']);
-      if($rekord[0] == $_POST['log'] && $rekord[1] == $test){
+      $pass = sha1($_POST['pas']);
+      if($rekord[0] == $_POST['log'] && $rekord[1] == $pass){
         session_start();
         $_SESSION["user"]=$rekord[0];
         header("Location: menu.php");
       }
-      elseif($rekord[0] == "IU"){
-        echo "Invalid username";
-        break;
+      if ($rekord[0] != $_POST['log']) {
+        echo"
+          <script type='text/javascript'>
+            $('#login').addClass('invalid');
+            $('#login').after('<span class=\"helper-text\" data-error=\"Wrong username\"></span>');
+          </script>
+        ";
       }
-      else{
-        echo "Ełoł";
+      if ($rekord[1] != $pass) {
+        echo'
+          <script type="text/javascript">
+            $("#password").addClass("invalid");
+          </script>
+        ';
       }
     }
   }
@@ -80,8 +90,7 @@ function login($user){
 
  ?>
 </div>
- <script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
- <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+
  <script type="text/javascript">
 
  </script>

@@ -7189,7 +7189,7 @@ $jscomp.polyfill = function (e, r, p, m) {
        * @prop {Boolean} [indicators=true] - Show indicators
        * @prop {Number} [height=400] - height of slider
        * @prop {Number} [duration=500] - Length in ms of slide transition
-       * @prop {Number} [interval=6000] - Length in ms of slide interval
+       * @prop {Number} [interval=0] - Length in ms of slide interval
        */
       _this40.options = $.extend({}, Slider.defaults, options);
 

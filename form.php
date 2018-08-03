@@ -3,8 +3,8 @@
   <head>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/main.css"/>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8"/>
@@ -21,34 +21,34 @@ if(!isset($_SESSION['user']) || $_SESSION['user'] == ''){
   header("Location: error.php");
 }
 
-if(isset($_POST['grp'])){
-  $grp = $_POST['grp'];
+if(isset($_GET['l'])){
+  $grp = $_GET['l'];
 }
 $att = dbRead($grp);
 echo '
-<div class="row form" style="background-color: green; height:300vh; overflow:auto;">
+<div class="row form" style="background-color: green; height:100vh; overflow:hidden;">
   <form class="col s5" action="menu.php" method="POST" ENCTYPE="multipart/form-data">
     <div class="row">
       <div class="input-field col s6">
-        <input type=text id="name" name="name" class="validate"/>
+        <input type=text id="name" name="name" class="validate" required/>
         <label for="name">Name</label>
       </div>
       <div class="input-field col s6">
-        <input type="text" id="surname" name=surname class="validate"/>
+        <input type="text" id="surname" name=surname class="validate" required/>
         <label for="surname">Surname</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s4">
-        <input type="text" id="dob" name="dob" class="datepicker"/>
+        <input type="text" id="dob" name="dob" class="datepicker" required/>
         <label for="dob">Date of birth</label>
       </div>
       <div class="input-field col s4">
-        <input type="text" id="pob" name="pob" class="validate"/>
+        <input type="text" id="pob" name="pob" class="validate" required/>
         <label for="pob">Place of birth</label>
       </div>
       <div class="input-field col s4">
-        <select name="sex">
+        <select name="sex" required>
           <option value="" disabled selected>Choose sex</option>
           <option value="0">Male</option>
           <option value="1">Female</option>
@@ -57,17 +57,17 @@ echo '
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <input type=text id="passport" name="passport" class="validate"/>
+        <input type=text id="passport" name="passport" class="validate" required/>
         <label for="passport">Passport (or id) number</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s6">
-        <input type="text" id="doi" name="doi" class="datepicker"/>
+        <input type="text" id="doi" name="doi" class="datepicker" required/>
         <label for="doi">Date of issue</label>
       </div>
       <div class="input-field col s6">
-        <input type="text" id="doe" name="doe" class="datepicker"/>
+        <input type="text" id="doe" name="doe" class="datepicker" required/>
         <label for="doe">Date of expiry</label>
       </div>
     </div>
@@ -82,12 +82,14 @@ echo '
 
 
   </form>
-  <div class="col s7">';
+
+  <div class="col s7 slider" style="margin-top:1vh">
+    <ul class="slides">';
   foreach($att as $rekord){
-    echo "<div class='row col s12 center-align' style='margin: 0 auto;'><img src='pass/".$rekord[1]."/".$rekord[0]."' style='width:40vw; padding: 5px;'/></div>";
+    echo "<li style=\"\"><img src='pass/".$rekord[1]."/".$rekord[0]."' class=\"img-responsive\"/></li>";
   }
 
-echo '</div>';
+echo '</ul></div>';
 
 
 function dbRead($grp){
@@ -108,7 +110,28 @@ function dbRead($grp){
    $(document).ready(function(){
      $('.datepicker').datepicker();
      $('select').formSelect();
-     $('select').material_select();
+     $('.slider').slider({
+       height: 450,
+       width: 300
+     });
+     $('.slider').slider('pause');
+     $('.indicator-item').on('click',function(){
+       $('.slider').slider('pause');
+     });
+     $(document).keydown(function(e) {
+      switch(e.which) {
+          case 37: // left
+            $('.slider').slider('prev');
+            $('.slider').slider('pause');
+          break;
+          case 39: // right
+            $('.slider').slider('next');
+            $('.slider').slider('pause');
+          break;
+          default: return; // exit this handler for other keys
+      }
+     });
+     $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
 
 
   });
