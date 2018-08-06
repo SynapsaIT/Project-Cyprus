@@ -83,10 +83,10 @@ echo '
 
   </form>
 
-  <div class="col s7 slider" style="margin-top:1vh">
+  <div class="col s7 slider" style="margin-top:1vh;">
     <ul class="slides">';
   foreach($att as $rekord){
-    echo "<li style=\"\"><img src='pass/".$rekord[1]."/".$rekord[0]."' class=\"img-responsive\"/></li>";
+    echo "<li style=\"\"><img src='pass/".$rekord[1]."/".$rekord[0]."' class=\"img-responsive\" style=\"background-size: contain; background-repeat: no-repeat;\"/></li>";
   }
 
 echo '</ul></div>';
@@ -112,7 +112,6 @@ function dbRead($grp){
      $('select').formSelect();
      $('.slider').slider({
        height: 450,
-       width: 300
      });
      $('.slider').slider('pause');
      $('.indicator-item').on('click',function(){
@@ -131,6 +130,7 @@ function dbRead($grp){
           default: return; // exit this handler for other keys
       }
      });
+     $(".img-responsive").elevateZoom();
      $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
 
 

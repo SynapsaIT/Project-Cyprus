@@ -32,12 +32,25 @@ if(isset($_POST['email'])){
   ';
 }
 
+if(isset($_POST['logout'])){
+  session_destroy();
+  header("Location: index.php");
+}
+
 if(isset($_POST['val'])){
   dbWrite($_POST['name'], $_POST['surname'], $_POST['sex'], $_POST['dob'], $_POST['pob'], $_POST['passport'], $_POST['doi'], $_POST['doe'], $_SESSION['user']);
 }
 
 echo '
 <div class="row form" style="background-color: green; height:100vh; width: 50vw; overflow:hidden;">
+  <div class="row" style="float:right;">
+    <form method=POST action="">
+      <input type="hidden" name="logout" value="1"/>
+      <button class="btn waves-effect waves-light" type="submit" name="action">Logout
+        <i class="material-icons right">exit_to_app</i>
+      </button>
+    </form>
+  </div>
   <form class="col s10" style="margin: 0 auto;" action="form.php" method="GET" ENCTYPE="multipart/form-data">
     <div class="row" style="margin: 0 auto;">
       <div class="input-field col s6">
@@ -73,13 +86,6 @@ echo'
           </button>
         </div>
       </div>
-    </form>
-  </div>
-  <div class="row" style="position:absolue; top:0; right:0;">
-    <form method=POST action="index.php">
-      <button class="btn waves-effect waves-light" type="submit" name="action">Generate and copy
-        <i class="material-icons right">send</i>
-      </button>
     </form>
   </div>
 </div>
