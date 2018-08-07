@@ -86,10 +86,18 @@ echo '
   <div class="col s7 slider" style="margin-top:1vh;">
     <ul class="slides">';
   foreach($att as $rekord){
-    echo "<li style=\"\"><img src='pass/".$rekord[1]."/".$rekord[0]."' class=\"img-responsive\" style=\"background-size: contain; background-repeat: no-repeat;\"/></li>";
+    echo "<li style=\"\" class=\"imag\"><img src='pass/".$rekord[1]."/".$rekord[0]."' data-zoom-image='pass/".$rekord[1]."/".$rekord[0]."' class=\"imaga\" style=\"\"/></li>";
   }
 
-echo '</ul></div>';
+echo '</ul>
+<button class="btn waves-effect waves-light" type="submit" id="b1">
+<i class="material-icons">rotate_left</i>
+</button>
+<button class="btn waves-effect waves-light" type="submit" id="b2">
+<i class="material-icons">rotate_right</i>
+</button>
+</div>
+';
 
 
 function dbRead($grp){
@@ -105,6 +113,8 @@ function dbRead($grp){
  ?>
 
  <script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
+ <script type="text/javascript" src="jquery/jQueryRotate.js"></script>
+ <script type="text/javascript" src="jquery/jquery.elevatezoom.js"></script>
  <script type="text/javascript" src="materialize/js/materialize.js"></script>
  <script type="text/javascript">
    $(document).ready(function(){
@@ -112,6 +122,7 @@ function dbRead($grp){
      $('select').formSelect();
      $('.slider').slider({
        height: 450,
+       full_width: true
      });
      $('.slider').slider('pause');
      $('.indicator-item').on('click',function(){
@@ -130,9 +141,32 @@ function dbRead($grp){
           default: return; // exit this handler for other keys
       }
      });
-     $(".img-responsive").elevateZoom();
-     $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+     $(".imaga").elevateZoom({
+       zoomWindowPosition: 9,
+       responsive: true,
+       tint: true
 
+     });
+     $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+     var value = 0;
+      $("#b1").rotate({
+        bind:
+        {
+          click: function(){
+            value -=90;
+            $(".imaga").rotate({ animateTo:value})
+          }
+        }
+      });
+      $("#b2").rotate({
+        bind:
+        {
+          click: function(){
+            value +=90;
+            $(".imaga").rotate({ animateTo:value})
+          }
+        }
+      });
 
   });
  </script>

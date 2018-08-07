@@ -43,14 +43,6 @@ if(isset($_POST['val'])){
 
 echo '
 <div class="row form" style="background-color: green; height:100vh; width: 50vw; overflow:hidden;">
-  <div class="row" style="float:right;">
-    <form method=POST action="">
-      <input type="hidden" name="logout" value="1"/>
-      <button class="btn waves-effect waves-light" type="submit" name="action">Logout
-        <i class="material-icons right">exit_to_app</i>
-      </button>
-    </form>
-  </div>
   <form class="col s10" style="margin: 0 auto;" action="form.php" method="GET" ENCTYPE="multipart/form-data">
     <div class="row" style="margin: 0 auto;">
       <div class="input-field col s6">
