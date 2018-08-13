@@ -6,21 +6,6 @@
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="css/main.css"/>
 
-<!--zoom-->
-
-<!-- jQuery core -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-
-    <!-- AJAX-ZOOM main js and css file -->
-    <script type="text/javascript" src="axZm/jquery.axZm.js"></script>
-    <link rel="stylesheet" type="text/css" href="axZm/axZm.css" media="all" />
-
-    <!-- AJAX-ZOOM imageSlider extension -->
-    <link rel="stylesheet" type="text/css" href="axZm/extensions/jquery.axZm.imageSlider.js" media="all" />
-    <script type="text/javascript" src="axZm/extensions/jquery.axZm.imageSlider.js"></script>
-
-
-
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8"/>
     <title></title>
@@ -97,19 +82,22 @@ echo '
 
 
   </form>
-  <DIV id="axZmPlayerOuter" left style="width: 800px; min-height: 430px; float: left">
-      <DIV id="axZmPlayerCont" style="width: 800px; min-height: 400px; float: left">
-      </DIV>
-  </DIV>';
 
-    // $alt=1;
-    //   foreach($att as $rekord){
-    //     echo "<img src='pass/".$rekord[1]."/".$rekord[0]."'  alt=\"$alt\"/>";
-    //     $alt++;
-    //   }
+  <div class="col s7 slider" style="margin-top:1vh;">
+    <ul class="slides">';
+  foreach($att as $rekord){
+    echo "<li style=\"\" class=\"imag\"><img src='pass/".$rekord[1]."/".$rekord[0]."' data-zoom-image='pass/".$rekord[1]."/".$rekord[0]."' class=\"imaga\" style=\"\"/></li>";
+  }
 
-
-
+echo '</ul>
+<button class="btn waves-effect waves-light" type="submit" id="b1">
+<i class="material-icons">rotate_left</i>
+</button>
+<button class="btn waves-effect waves-light" type="submit" id="b2">
+<i class="material-icons">rotate_right</i>
+</button>
+</div>
+';
 
 
 function dbRead($grp){
@@ -124,15 +112,63 @@ function dbRead($grp){
 
  ?>
 
+ <script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
+ <script type="text/javascript" src="jquery/jQueryRotate.js"></script>
+ <script type="text/javascript" src="jquery/jquery.elevatezoom.js"></script>
+ <script type="text/javascript" src="materialize/js/materialize.js"></script>
  <script type="text/javascript">
+   $(document).ready(function(){
+     $('.datepicker').datepicker();
+     $('select').formSelect();
+     $('.slider').slider({
+       height: 450,
+       full_width: true
+     });
+     $('.slider').slider('pause');
+     $('.indicator-item').on('click',function(){
+       $('.slider').slider('pause');
+     });
+     $(document).keydown(function(e) {
+      switch(e.which) {
+          case 37: // left
+            $('.slider').slider('prev');
+            $('.slider').slider('pause');
+          break;
+          case 39: // right
+            $('.slider').slider('next');
+            $('.slider').slider('pause');
+          break;
+          default: return; // exit this handler for other keys
+      }
+     });
+     $(".imaga").elevateZoom({
+       zoomWindowPosition: 9,
+       responsive: true,
+       tint: true
 
-   jQuery.fn.ajaxZoomSlider({
-    "parameter": "zoomDir=/pass/eb10deb2669bfc889662d585dc6e9e23",
-    "divID": "axZmPlayerCont"
-   });
+     });
+     $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+     var value = 0;
+      $("#b1").rotate({
+        bind:
+        {
+          click: function(){
+            value -=90;
+            $(".imaga").rotate({ animateTo:value})
+          }
+        }
+      });
+      $("#b2").rotate({
+        bind:
+        {
+          click: function(){
+            value +=90;
+            $(".imaga").rotate({ animateTo:value})
+          }
+        }
+      });
 
+  });
  </script>
-
-
 </body>
 </html>
