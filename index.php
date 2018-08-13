@@ -4,7 +4,8 @@
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css"  media="screen,projection"/>
+    <ling rel="stylesheet" type="text/css" href="css/main.css"/>
 
 
     <!--Let browser know website is optimized for mobile-->
@@ -12,7 +13,7 @@
     <title>Test</title>
   </head>
   <body>
-    <script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="jquery/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="materialize/js/materialize.js"></script>
 <?php
   session_start();

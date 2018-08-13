@@ -36,9 +36,8 @@ if(isset($_POST['logout'])){
   session_destroy();
   header("Location: index.php");
 }
-
-echo '
-<div class="row form" style="background-color: green; height:100vh; width: 50vw; overflow:hidden;">
+?>
+<div class="row form" style="background-color: green; height:100vh; width: 100vw; overflow:hidden;">
   <div class="right-align" style="margin-right:10px; margin-top:10px;">
     <form method=POST action="">
       <input type="hidden" name="logout" value="1"/>
@@ -51,7 +50,8 @@ echo '
     <div class="row" style="margin: 0 auto;">
       <div class="input-field col s6">
         <select name="l" required>
-          <option value="" disabled selected>Choose task</option>';
+          <option value="" disabled selected>Choose task</option>
+          <?php
           $tsk = dbTsk();
           foreach($tsk as $rekord){
             echo '<option value="'.$rekord[0].'">';
@@ -59,10 +59,10 @@ echo '
               echo $rec[0].' '.'</option>';
             }
           }
+          ?>
 
-echo'
         </select>
-        <div class="submit col s6 style="padding: 10px; display: inline-block; height: auto;">
+        <div class="submit col s6" style="padding: 10px; display: inline-block; height: auto;">
           <button class="btn waves-effect waves-light" type="submit" name="action">Submit
           <i class="material-icons right">send</i>
           </button>
@@ -85,8 +85,7 @@ echo'
     </form>
   </div>
 </div>
-
-';
+<?php
 
 function dbTsk(){
   global $db, $attachments_table;

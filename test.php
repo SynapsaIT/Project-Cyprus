@@ -11,7 +11,7 @@
 
     <body class="row" style="background-color: grey;" style="margin: 0;">
       <div class="kontener" style="background-color: blue ">
-        <div class="banner" style="width:25%; display: inline-block; background-color: red;"><img src="tecomalogo.png"/> </div>
+        <div class="banner" style="width: auto; display: inline-block; background-color: red;"><img src="tecomalogo.png"/> </div>
 <?php
 
 $l = $_GET['l'];
