@@ -42,11 +42,33 @@ if(isset($_POST['val'])){
 }
 
 echo '
+
+<div class="row">
+  <form method="POST" action="">
+    <div class="input-field inline col s6">
+      <input value="" name="email" id="email" type="email" class="validate" required/>
+      <label class="active" for="email">Insert mail</label>
+      <input type=hidden name="l" id="l" value="'.md5(time()).'"/>
+      <div class="generate" style="padding: 10px; display: inline-block; height: auto;">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Generate and copy
+        <i class="material-icons right">send</i>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+
+
+
+
+
+
 <div class="row form" style="background-color: green; height:100vh; width: 50vw; overflow:hidden;">
-  <form class="col s10" style="margin: 0 auto;" action="form.php" method="GET" ENCTYPE="multipart/form-data">
+  <form class="col s10" style="margin: 0 auto;" action="" method="GET" ENCTYPE="multipart/form-data">
     <div class="row" style="margin: 0 auto;">
       <div class="input-field col s6">
-        <select name="l" required>
+        <select id="select_task" name="l" required>
           <option value="" disabled selected>Choose task</option>';
           $tsk = dbTsk();
           foreach($tsk as $rekord){
@@ -59,29 +81,17 @@ echo '
 echo'
         </select>
         <div class="submit col s6 style="padding: 10px; display: inline-block; height: auto;">
-          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+          <button class="btn waves-effect waves-light" id="submit_task" type="submit" name="action">Submit
           <i class="material-icons right">send</i>
           </button>
         </div>
       </div>
     </div>
   </form>
-  <div class="row">
-    <form method="POST" action="">
-      <div class="input-field inline col s6">
-        <input value="" name="email" id="email" type="email" class="validate" required/>
-        <label class="active" for="email">Insert mail</label>
-        <input type=hidden name="l" id="l" value="'.md5(time()).'"/>
-        <div class="generate" style="padding: 10px; display: inline-block; height: auto;">
-          <button class="btn waves-effect waves-light" type="submit" name="action">Generate and copy
-          <i class="material-icons right">send</i>
-          </button>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
 
+<div id="list">
+
+ </div>
 ';
 
 function dbTsk(){
@@ -124,6 +134,17 @@ function dbWrite($name, $surname, $sex, $dob, $pob, $passport, $doi, $doe, $iu){
  ?>
 
  <script type="text/javascript">
+  document.getElementById("submit_task").onclick = function() {
+    var selected_group_id= $('#select_task').val();
+
+    $.post( "get_task.php", { sgid: selected_group_id});
+  };
+
+
+
+
+
+
    $('select').formSelect();
    $('.generate').click(function(){
      if(!$('#email').hasClass("invalid") && $('#email').val()!= ''){
