@@ -6,6 +6,11 @@
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="css/main.css"/>
 
+    <script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="jquery/jQueryRotate.js"></script>
+    <script type="text/javascript" src="jquery/jquery.elevatezoom.js"></script>
+    <script type="text/javascript" src="materialize/js/materialize.js"></script>
+
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8"/>
     <title></title>
@@ -24,65 +29,87 @@ if(!isset($_SESSION['user']) || $_SESSION['user'] == ''){
 if(isset($_GET['l'])){
   $grp = $_GET['l'];
 }
+
+if(isset($_POST['is'])){
+  dbWrite($_POST['name'], $_POST['surname'], $_POST['sex'], $_POST['dob'], $_POST['pob'], $_POST['passport'], $_POST['doi'], $_POST['doe'], $_SESSION['user']);
+}
 $att = dbRead($grp);
+
 echo '
 <div class="row form" style="background-color: green; height:100vh; overflow:hidden;">
-  <form class="col s5" action="menu.php" method="POST" ENCTYPE="multipart/form-data">
-    <div class="row">
-      <div class="input-field col s6">
-        <input type=text id="name" name="name" class="validate" required/>
-        <label for="name">Name</label>
-      </div>
-      <div class="input-field col s6">
-        <input type="text" id="surname" name=surname class="validate" required/>
-        <label for="surname">Surname</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s4">
-        <input type="text" id="dob" name="dob" class="datepicker" required/>
-        <label for="dob">Date of birth</label>
-      </div>
-      <div class="input-field col s4">
-        <input type="text" id="pob" name="pob" class="validate" required/>
-        <label for="pob">Place of birth</label>
-      </div>
-      <div class="input-field col s4">
-        <select name="sex" required>
-          <option value="" disabled selected>Choose sex</option>
-          <option value="0">Male</option>
-          <option value="1">Female</option>
-        </select>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input type=text id="passport" name="passport" class="validate" required/>
-        <label for="passport">Passport (or id) number</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s6">
-        <input type="text" id="doi" name="doi" class="datepicker" required/>
-        <label for="doi">Date of issue</label>
-      </div>
-      <div class="input-field col s6">
-        <input type="text" id="doe" name="doe" class="datepicker" required/>
-        <label for="doe">Date of expiry</label>
-      </div>
-    </div>
-    <div class="submit col s12 center-align" style="padding: 10px; display: inline-block; height: auto;">
-      <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-      <i class="material-icons right">send</i>
-      </button>
-    </div>
-    <input type=hidden name=val />
+<div class="col s5 apnd">';
+// if(!isset($_POST['is'])){
+//   echo '<div class="row frange" style="margin-top:20px;">
+//     <div class="col s12">
+//       <p class="range-field">
+//         <input type="range" id="test5" name="val" min=1 max=100 value=1 default=1/>
+//       </p>
+//     </div>
+//     <div class="col s12 center-align">
+//       <button class="btn waves-effect waves-light" id="pval">OK
+//         <i class="material-icons right">send</i>
+//       </button>
+//     </div>
+//   </div>';
+// }
+echo '
+  <form action="" method="POST" ENCTYPE="multipart/form-data" id="mform">
 
-
-
-
+  <div id="all">
+      <div class="row">
+        <div class="input-field col s6">
+          <input type=text id="name" name="name" class="validate" required/>
+          <label for="name">Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="text" id="surname" name=surname class="validate" required/>
+          <label for="surname">Surname</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s4">
+          <input type="text" id="dob" name="dob" class="datepicker" required/>
+          <label for="dob">Date of birth</label>
+        </div>
+        <div class="input-field col s4">
+          <input type="text" id="pob" name="pob" class="validate" required/>
+          <label for="pob">Place of birth</label>
+        </div>
+        <div class="input-field col s4">
+          <select name="sex" id="sex" required>
+            <option value="" disabled selected>Choose sex</option>
+            <option value="0">Male</option>
+            <option value="1">Female</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type=text id="passport" name="passport" class="validate" required/>
+          <label for="passport">Passport (or id) number</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" id="doi" name="doi" class="datepicker" required/>
+          <label for="doi">Date of issue</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="text" id="doe" name="doe" class="datepicker" required/>
+          <label for="doe">Date of expiry</label>
+        </div>
+      </div>
+    </div>
+    <input type="hidden" name="is"/>
+    <div class="submit col s12 center-align" style="padding: 10px; display: inline-block; height: auto;"><button class="btn waves-effect waves-light" type="submit" name="action">Submit<i class="material-icons right">send</i></button></div>
   </form>
-
+  <form method="POST" action="menu.php">
+    <div class="submit col s12 center-align" style="padding: 10px; display: inline-block; height: auto;"><button class="btn waves-effect waves-light" type="submit" name="action" onclick="return confirm(\'Are you sure you would like close this ticket and delete all pictures?\');">Close task<i class="material-icons right">send</i></button></div>
+  </form>';
+  // <div class="col s6 center-align"><button class=" btn waves-effect waves-light" id="prev">Prev<i class="material-icons right">send</i></button></div>
+  // <div class="col s6 center-align"><button class=" btn waves-effect waves-light" id="next">Next<i class="material-icons right">send</i></button></div>
+  echo '
+</div>
   <div class="col s7 slider" style="margin-top:1vh;">
     <ul class="slides">';
   foreach($att as $rekord){
@@ -109,16 +136,39 @@ function dbRead($grp){
 	}
   return $wynik;
 }
+function dbWrite($name, $surname, $sex, $dob, $pob, $passport, $doi, $doe, $iu){
+  global $db, $personaldata_table;
+  $sql = "INSERT INTO $personaldata_table VALUES (NULL, '$name', '$surname', '$passport', DATE '$doi', DATE'$doe', $sex, DATE '$dob', '$pob', '$iu')";
+  if ($db->query($sql) === TRUE) {
+    echo '<script type="text/javascript">
+      M.toast({html: "Uploaded to Database"});
+    </script>';
+  }
+  else{
+    echo '<script type="text/javascript">
+      M.toast({html: "Error, something went wrong"});
+    </script>';
+  }
+}
 
  ?>
 
- <script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
- <script type="text/javascript" src="jquery/jQueryRotate.js"></script>
- <script type="text/javascript" src="jquery/jquery.elevatezoom.js"></script>
- <script type="text/javascript" src="materialize/js/materialize.js"></script>
+
  <script type="text/javascript">
+
    $(document).ready(function(){
+
+
+     // $("#next").hide();
+     // $("#prev").hide();
+     // $("#all").hide();
      $('.datepicker').datepicker();
+     $('#doe').prop( "disabled", true );
+     $('#doi').change({
+       $('#doe').prop( "disabled", false );
+       var Data = new Date($('#doi').val());
+       $('#doe').datepicker({minDate: Data});
+     });
      $('select').formSelect();
      $('.slider').slider({
        height: 450,
@@ -168,7 +218,58 @@ function dbRead($grp){
         }
       });
 
+      // $("#pval").click(function(){
+      //   tyt = $("#test5").val();
+      //   if(tyt>1){
+      //     $(".frange").hide()
+      //     $("#all").show();
+      //     $("#prev").append("<div class=\"col s12 center-align\" style=\"padding: 10px; display: inline-block; height: auto;\"><button class=\"btn waves-effect waves-light\" id=\"prev\">Prev<i class=\"material-icons right\">send</i></button></div>");
+      //     $("#prev").hide();
+      //     $("#next").show();
+      //   }
+      //   else {
+      //     $(".frange").hide()
+      //     $("#mform").append("<div class=\"col s12 center-align\" style=\"padding: 10px; display: inline-block; height: auto;\"><button class=\"btn waves-effect waves-light\" type=\"submit\" name=\"action\">Submit<i class=\"material-icons right\">send</i></button></div>");
+      //     $("#all").show();
+      //   }
+      // });
+      // var cnt = 0;
+      // $("#next").click(function(){
+      //   tab = tablica_dwuwymiarowa(tyt);
+      //   if(!tab[cnt+1]['name']){
+      //     tab[cnt]['name'] = $("#name").val();
+      //     tab[cnt]['surname'] = $("#surname").val();
+      //     tab[cnt]['dob'] = $("#dob").val();
+      //     tab[cnt]['pob'] = $("#pob").val();
+      //     tab[cnt]['sex'] = $("#sex").val();
+      //     tab[cnt]['passport'] = $("#passport").val();
+      //     tab[cnt]['doi'] = $("#doi").val();
+      //     tab[cnt]['doe'] = $("#doe").val();
+      //     $('#mform')[0].reset();
+      //     $("#prev").show();
+      //     cnt++;
+      //   }
+      // });
+      // $("#prev").click(function(){
+      //   $("#name").val("dupa");
+      //   $("#surname").val(tab[cnt]['surname']);
+      //   $("#dob").val(tab[cnt]['dob']);
+      //   $("#pob").val(tab[cnt]['pob']);
+      //   $("#sex").val(tab[cnt]['sex']);
+      //   $("#passport").val(tab[cnt]['passport']);
+      //   $("#doi").val(tab[cnt]['doi']);
+      //   $("#doe").val(tab[cnt]['doe']);
+      // });
+
   });
+
+  function tablica_dwuwymiarowa(liczba_wierszy) {
+    var tab = new Array(liczba_wierszy);
+    for (var i = 0; i < liczba_wierszy; i++) {
+      tab[i] = [];
+    }
+    return tab;
+  }
  </script>
 </body>
 </html>

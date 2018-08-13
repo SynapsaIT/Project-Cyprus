@@ -16,77 +16,12 @@
     <script type="text/javascript" src="materialize/js/materialize.js"></script>
 <?php
   session_start();
-  require_once 'config/conf.php';
-  require_once 'config/mysql.class.php';
-  echo '
-  <div class="form row" style="background-color: green; width:33vw; height:40vh; margin: 0 auto;">
-    <form class="center-align col s12" action="" method="POST" ENCTYPE="multipart/form-data">
-      <div class="row">
-        <div class="input-field col s6">
-          <input type=text id="login" name=log class="validate" required/>
-          <label for="login">Login</label>
-        </div>
-        <div class="input-field col s6">
-          <input type=password id="password" name=pas class="validate" required/>
-          <label for="password">Password</label>
-        </div>
-      </div>
-      <div class="submit" style="padding: 10px; display: inline-block; height: auto;">
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-        <i class="material-icons right">send</i>
-        </button>
-      </div>
-
-
-
-
-    </form>
-
-  ';
-  if(isset($_POST['log']) || isset($_POST['pas'])){
-    $wyniki = login($_POST['log']);
-    foreach($wyniki as $rekord){
-      $pass = sha1($_POST['pas']);
-      if($rekord[0] == $_POST['log'] && $rekord[1] == $pass){
-        session_start();
-        $_SESSION["user"]=$rekord[0];
-        header("Location: menu.php");
-      }
-      if ($rekord[0] != $_POST['log']) {
-        echo"
-          <script type='text/javascript'>
-            $('#login').addClass('invalid');
-            $('#login').after('<span class=\"helper-text\" data-error=\"Wrong username\"></span>');
-          </script>
-        ";
-      }
-      if ($rekord[1] != $pass) {
-        echo'
-          <script type="text/javascript">
-            $("#password").addClass("invalid");
-          </script>
-        ';
-      }
-    }
+  if(isset($_SESSION['user'])){
+    header("Location: menu.php");
   }
-
-
-
-function login($user){
-  global $db, $users_table;
-  $sql = "SELECT username, password FROM $users_table WHERE username='".$user."'";
-  $result = $db->query($sql);
-	while($row = $result -> fetch_array()){
-	  $wynik[] = $row;
-	}
-  if(isset($wynik)){
-    return $wynik;
+  else{
+    header("Location: login.php");
   }
-  else {
-    $wynik[0] = "IU";
-    return $wynik;
-  }
-}
 
  ?>
 </div>

@@ -10,8 +10,8 @@
     </head>
 
     <body class="row" style="background-color: grey;" style="margin: 0;">
-      <div class="kontener" style="background-color: blue" style="width: 100%;">
-        <div class="banner"><img src="tecomalogo.jpg" style="width:25%;"/> </div>
+      <div class="kontener" style="background-color: blue ">
+        <div class="banner" style="width:25%; display: inline-block; background-color: red;"><img src="tecomalogo.png"/> </div>
 <?php
 
 $l = $_GET['l'];
@@ -30,32 +30,34 @@ if(!isset($_POST['file'])){
     </div>
   </div>
 
+  <div class="hide-on-med-and-down form" style="background-color: green; height: 70vh; width: 100vw; margin: 0 auto;">
 
-  <div class="form" style="background-color: green; height: 44vh; width: 55vw; margin: 0 auto; margin-top: 15vh;">
     <form class="center-align" action=pass.php'.'?l='.$l.' method="POST" ENCTYPE="multipart/form-data" style="">
-
-
+    <img id="up1" src="1.png" alt="send" style="width: 40vh; float: left; margin-top: 45vh;"/>
     <div class="file-field input-field uploader" style="position: relative; background-color: aqua; height:40vh; width: 30vh; border: 2px solid black; border-radius: 25px; float: left;">
-      <div class="icon" style="height: 40vh; padding-top: 30%"> <i class="material-icons" style="font-size: 8rem;">add_a_photo</i></div>
+      <div class="icon" style="height: 40vh; padding-top: 30%"> <i class="material-icons" style="font-size: 20vh;">add_a_photo</i></div>
           <input type="file" name="file[]"  id="in" multiple accept="image/*" />
     </div>
-
+  <img id="send1" src="2.png" alt="send" style="position: relative;width: 40vh; float: right; margin-right: 5vh; margin-top: -5vh;"/>
       <button class="btn waves-effect waves-light" type="submit" name="action" style="margin-top: 15px; background-color: aqua; height:40vh; width: 30vh; border: 2px solid black; border-radius: 25px; position: relative; float: right;">
       </button>
 
 
-</form></div>';
+
+</form>
+
+</div>';
 
 }
 
 ?>
-<div class="ph center-align" style="width:60vh ;height:auto; background-color: red; margin:0 auto;"></div>
+<div class="ph center-align" style="width:60vh ;height:auto; margin:0 auto;"></div>
 </div>
 </div>
 
 
   <script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
-  <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+  <script type="text/javascript" src="materialize/js/materialize.js"></script>
   <script type="text/javascript">
 
     $(document).ready(function(){
