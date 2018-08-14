@@ -9,14 +9,14 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
 
-    <body class="row" style="background-color: grey;" style="margin: 0;">
-      <div class="kontener" style="background-color: blue ">
-        <div class="banner" style="width: auto; display: inline-block; background-color: red;"><img src="tecomalogo.png"/> </div>
+    <body class="row" style="" style="margin: 0;">
+      <div class="kontener" style="">
+        <div class="banner" style="height: 12vh; width: 100%; display: inline-block; background-color: white; box-shadow: 1px 2px 30px 4px rgba(0,0,0,0.75);"><img src="tecomalogo.png" style="height: 12vh; padding: 5px;"/> </div>
 <?php
 
 $l = $_GET['l'];
 if(!isset($_POST['file'])){
-  echo '
+?>
 <div class="hide-on-large-only">
     <!-- Modal Structure -->
     <div id="modal1" class="modal modal-fixed-footer">
@@ -30,23 +30,25 @@ if(!isset($_POST['file'])){
     </div>
   </div>
 
-  <div class="hide-on-med-and-down form" style="background-color: green; height: 70vh; width: 100vw; margin: 0 auto;">
+  <div class="hide-on-med-and-down form" style=" height: 70vh; width: 100vw; margin: 0 auto;">
 
     <form class="center-align" action=pass.php'.'?l='.$l.' method="POST" ENCTYPE="multipart/form-data" style="">
-    <img id="up1" src="1.png" alt="send" style="width: 40vh; float: left; margin-top: 45vh;"/>
-    <div class="file-field input-field uploader" style="position: relative; background-color: aqua; height:40vh; width: 30vh; border: 2px solid black; border-radius: 25px; float: left;">
+    <img id="up1" src="1.png" alt="send" style="width: 40vh; float: left; margin-top: 55vh;"/>
+    <div class="file-field input-field uploader" style="position: relative; background-color: aqua; height:40vh; width: 30vh; border: 2px solid black; border-radius: 25px; float: left; margin-top: 15vh;">
       <div class="icon" style="height: 40vh; padding-top: 30%"> <i class="material-icons" style="font-size: 20vh;">add_a_photo</i></div>
           <input type="file" name="file[]"  id="in" multiple accept="image/*" />
     </div>
-  <img id="send1" src="2.png" alt="send" style="position: relative;width: 40vh; float: right; margin-right: 5vh; margin-top: -5vh;"/>
-      <button class="btn waves-effect waves-light" type="submit" name="action" style="margin-top: 15px; background-color: aqua; height:40vh; width: 30vh; border: 2px solid black; border-radius: 25px; position: relative; float: right;">
-      </button>
+  <img id="send1" src="2.png" alt="send" style="position: relative;width: 40vh; float: right; margin-right: 5vh; margin-top: 3vh;"/>
+      <button class="btn waves-effect waves-light" type="submit" name="action" style="margin-top: 15px; background-color: aqua; height:40vh; width: 30vh; border: 2px solid black; border-radius: 25px; position: relative; float: right; margin-top: 15vh;">
+      <div class="icon" style="height: 40vh; padding-top: 65%; margin-left: 10px;"> <i class="material-icons" style="font-size: 20vh; color: black;">send</i></div>/button>
 
 
 
 </form>
 
-</div>';
+</div>
+
+<?php
 
 }
 
