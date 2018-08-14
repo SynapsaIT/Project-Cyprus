@@ -20,7 +20,7 @@
   require_once 'config/mysql.class.php';
   ?>
   <div class="form row" style="width:25vw; height:auto; margin: 0 auto; transform: translate(0, 30%)">
-    <img src="tecomalogo.png" style="width: 90%; display: block; margin-left: auto; margin-right: auto; padding-bottom: 8vh;"/>
+    <img src="pony.png" style="width: 90%; display: block; margin-left: auto; margin-right: auto; padding-bottom: 8vh;"/>
     <form class="center-align col s12" action="" method="POST" ENCTYPE="multipart/form-data">
       <div class="row">
         <div class="loginfield input-field col s12">
