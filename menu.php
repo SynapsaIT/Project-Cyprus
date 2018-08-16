@@ -10,11 +10,12 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8"/>
     <title>Test</title>
-  </head>
-  <body>
     <script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="jquery/jquery.md5.js"></script>
     <script type="text/javascript" src="materialize/js/materialize.js"></script>
+  </head>
+  <body>
+
 <?php
 session_start();
 require_once 'config/conf.php';
@@ -37,52 +38,62 @@ if(isset($_POST['logout'])){
   header("Location: index.php");
 }
 ?>
-<div class="row form" style="background-color: green; height:100vh; width: 100vw; overflow:hidden;">
-  <div class="right-align" style="margin-right:10px; margin-top:10px;">
-    <form method=POST action="">
-      <input type="hidden" name="logout" value="1"/>
-      <button class="btn waves-effect waves-light" type="submit" name="action">Logout
-        <i class="material-icons right">exit_to_app</i>
-      </button>
-    </form>
-  </div>
-  <form class="col s10" style="margin: 0 auto;" action="form.php" method="GET" ENCTYPE="multipart/form-data">
-    <div class="row" style="margin: 0 auto;">
-      <div class="input-field col s6">
-        <select name="l" required>
-          <option value="" disabled selected>Choose task</option>
-          <?php
-          $tsk = dbTsk();
-          foreach($tsk as $rekord){
-            echo '<option value="'.$rekord[0].'">';
-            foreach(dbTskEmail($rekord[0]) as $rec){
-              echo $rec[0].' '.'</option>';
-            }
-          }
-          ?>
+<div class="kontener">
 
-        </select>
-        <div class="submit col s6" style="padding: 10px; display: inline-block; height: auto;">
-          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-          <i class="material-icons right">send</i>
-          </button>
-        </div>
-      </div>
+  <div class="banner" style="height: 12vh; width: 100%; display: inline-block; background-color: white; box-shadow: 1px 2px 30px 4px rgba(0,0,0,0.75);"><img src="tecomalogo.png" style="height: 12vh; padding: 5px; float: left;"/>
+    <div class="right-align" style="padding: 3vh;">
+
+      <form method=POST action="">
+        <input type="hidden" name="logout" value="1"/>
+        <span class="hide-on-small-only" style="font-size: 3vh; margin-right: 3vw;">Log In as <b><?php echo $_SESSION['user'] ?></b></span>
+        <button class="btn waves-effect waves-light" type="submit" name="action" style=" background-color: #021f47; height: 6vh;">Logout
+          <i class="material-icons right">exit_to_app</i>
+        </button>
+      </form>
     </div>
-  </form>
-  <div class="row">
-    <form method="POST" action="">
-      <div class="input-field inline col s6">
-        <input value="" name="email" id="email" type="email" class="validate" required/>
-        <label class="active" for="email">Insert mail</label>
-        <input type=hidden name="l" id="l" value="'.md5(time()).'"/>
-        <div class="generate" style="padding: 10px; display: inline-block; height: auto;">
-          <button class="btn waves-effect waves-light" type="submit" name="action">Generate and copy
-          <i class="material-icons right">send</i>
-          </button>
+  </div>
+
+  <div class="row form" style="height:100vh; width: 100vw; overflow:hidden; margin-top: 10vh;">
+    <form class="col s12" style="" action="form.php" method="GET" ENCTYPE="multipart/form-data">
+      <div class="row" style="">
+        <div class="input-field col s4">
+          <select name="l" required>
+            <option value="" disabled selected>Choose task</option>
+            <?php
+            $tsk = dbTsk();
+            foreach($tsk as $rekord){
+              echo '<option value="'.$rekord[0].'">';
+              foreach(dbTskEmail($rekord[0]) as $rec){
+                echo $rec[0].' '.'</option>';
+              }
+            }
+            ?>
+          </select>
+          <div class="submit" style="padding: 10px; display: inline-block; height: auto; float: right;">
+            <button class="btn waves-effect waves-light" type="submit" name="action" style="background-color: #3a77d2;">Submit
+            <i class="material-icons right">send</i>
+            </button>
+          </div>
         </div>
       </div>
     </form>
+    <div class="row">
+      <form method="POST" action="">
+        <div class="input-field inline col s6">
+          <input value="" name="email" id="email" type="email" class="validate" required/>
+          <label class="active" for="email">Insert mail</label>
+<?php
+echo'
+          <input type=hidden name="l" id="l" value="'.md5(time()).'"/>'
+          ?>
+          <div class="submit" style="padding: 10px; display: inline-block; height: auto; float: right;">
+            <button class="btn waves-effect waves-light" type="submit" name="action" style="background-color: #3a77d2;">Generate and Copy
+            <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 <?php

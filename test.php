@@ -9,8 +9,8 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
 
-    <body class="row" style="" style="margin: 0;">
-      <div class="kontener" style="background-image: url('back.png'); background-size: cover; height: 100vh;">
+    <body class="row">
+      <div class="kontener" style="background-image: url('backo.png'); background-size: cover; height: 100vh;">
         <div class="banner" style="height: 12vh; width: 100%; display: inline-block; background-color: white; box-shadow: 1px 2px 30px 4px rgba(0,0,0,0.75);"><img src="tecomalogo.png" style="height: 12vh; padding: 5px;"/> </div>
     <form class="center-align" action=pass.php'.'?l='.$l.' method="POST" ENCTYPE="multipart/form-data" style="">
 <?php
@@ -32,7 +32,7 @@ if(!isset($_POST['file'])){
 
     <!-- MOBILE SECTION -->
 
-    <div class="mobile" style="width: 100vw; height: 100vh;">
+    <div class="mobile" style="width: 100vw; height: auto;">
       <div style="width: 50vw; height: 100vh; margin: 0 auto;">
         <div class="file-field input-field uploader" style="background-color: white; height:20vh; width: 50vw; border: 2px solid black; border-radius: 25px; float: left; margin-top: 15vh; box-shadow: 1px 2px 10px 6px rgba(0,0,0,0.75);">
           <div class="icon" style="height: 20vh; width: 50vw; margin: 0 auto; text-align: center;">
@@ -50,7 +50,7 @@ if(!isset($_POST['file'])){
     </div>
   </div>
 
-  <div class="hide-on-med-and-down form" style=" height: 70vh; width: 100vw; margin: 0 auto;">
+  <div class="hide-on-med-and-down form" style="height: auto; width: 100vw; margin: 0 auto;">
   <img id="up1" src="1.png" alt="send" style="width: 25vw; margin-top: 57vh; float: left; margin-left: 8vw;"/>
   <img id="send1" src="2.png" alt="send" style="width: 22vw; float: right; margin-right: 8vw; margin-bottom: 80vh;"/>
 
@@ -70,10 +70,6 @@ if(!isset($_POST['file'])){
         </div>
       </button>
     </div>
-
-
-
-
 </form>
 
 </div>
@@ -83,7 +79,7 @@ if(!isset($_POST['file'])){
 }
 
 ?>
-<div id="ph" class="center-align" style="background-color: red; width:100vw; height:100vh; margin:0 auto;"></div>
+<div id="ph" class="center-align" style="background-color: red; width:100vw; height:auto; margin:0 auto;"></div>
 </div>
 </div>
 
@@ -93,7 +89,6 @@ if(!isset($_POST['file'])){
   <script type="text/javascript">
 
     $(document).ready(function(){
-      $('#xD').css('background-color', 'gray');
       $('.modal').modal();
       $('#modal1').modal('open');
 
@@ -105,7 +100,7 @@ if(!isset($_POST['file'])){
               for(var i=0; i<input.files.length; i++){
                 console.log(i);
                 var reader = new FileReader();
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                   $('#ph').append('<div class="imgs center-align" style="width:20vh; height:22vh;float:left;"><img class="materialboxed" src='+e.target.result+' style="width:20vh; height:22vh;padding: 5px; float: left; object-fit:cover;"></div>');
                   if(z==input.files.length-1){
                     $('.materialboxed').materialbox();
