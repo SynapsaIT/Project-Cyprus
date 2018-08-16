@@ -121,7 +121,7 @@ function dbEmail($group, $email){
      if(!$('#email').hasClass("invalid") && $('#email').val()!= ''){
        var $temp = $("<input>");
        $("body").append($temp);
-       $temp.val("http://192.168.169.149/Project-Cyprus/test.php?l="+$('#l').val()).select();
+       $temp.val("http://192.168.169.78:81/Project-Cyprus/test.php?l="+$('#l').val()).select();
        document.execCommand("copy");
        $temp.remove();
      }
