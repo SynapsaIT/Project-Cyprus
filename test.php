@@ -34,15 +34,15 @@ if(!isset($_POST['file'])){
     <div class="mobile" style="width: 100vw; height: 100vh;">
       <div style="width: 50vw; height: 100vh; margin: 0 auto;">
         <div class="file-field input-field uploader" style="background-color: white; height:20vh; width: 50vw; border: 2px solid black; border-radius: 25px; float: left; margin-top: 15vh; box-shadow: 1px 2px 10px 6px rgba(0,0,0,0.75);">
-          <div class="icon" style="height: 20vh; width: 5vw; padding: 5px;">
-            <i class="material-icons" style="font-size: 15vmin; color: #3a77d2;">add_a_photo</i>
+          <div class="icon" style="height: 20vh; width: 50vw; margin: 0 auto; text-align: center;">
+            <i class="material-icons" style="font-size: 15vh; color: #3a77d2;margin-top: 2vh; ">add_a_photo</i>
           </div>
           <input type="file" name="file[]"  id="in" multiple accept="image/*" />
         </div>
 
-        <button class="btn waves-effect waves-light" type="submit" name="action" style="background-color: white; margin-top: 15px; height:20vh; width: 50vw; border: 2px solid black; border-radius: 25px; position: relative; float: right; margin-top: 15vh; box-shadow: 1px 2px 10px 6px rgba(0,0,0,0.75);">
-          <div class="icon" style="height: 20vh; width: 5vw; padding: 5px;">
-            <i class="material-icons" style="font-size: 15vmin; color: #3a77d2; margin-top: 5vh;">send</i>
+        <button class="btn waves-effect waves-light" type="submit" name="action" style="background-color: white; height:20vh; width: 50vw; border: 2px solid black; border-radius: 25px; margin-top: 15vh; box-shadow: 1px 2px 10px 6px rgba(0,0,0,0.75);">
+          <div class="icon" style="height: 20vh; width: 50vw; margin: 0 auto; text-align: center;">
+            <i class="material-icons" style="height: auto; font-size: 15vh; color: #3a77d2; margin-left: -20px;margin-top: 7vh;">send</i>
           </div>
         </button>
       </div>
@@ -58,14 +58,14 @@ if(!isset($_POST['file'])){
     <div style="width: 40vw; height: 75vh; margin: 0 auto; margin-top: 5vh;">
       <div class="file-field input-field uploader" style="background-color: white; height:40vh; width: 15vw; border: 2px solid black; border-radius: 25px; float: left; margin-top: 15vh; box-shadow: 1px 2px 10px 6px rgba(0,0,0,0.75);">
         <div class="icon" style="margin-top: 10vh; display: inline-block;">
-          <i class="material-icons" style="font-size: 10vw; color: #3a77d2;">add_a_photo</i>
+          <i class="material-icons" style="font-size: 20vh; color: #3a77d2;">add_a_photo</i>
         </div>
         <input type="file" name="file[]"  id="in" multiple accept="image/*" />
       </div>
 
       <button class="btn waves-effect waves-light" type="submit" name="action" style="background-color: white; margin-top: 15px; height:40vh; width: 15vw; border: 2px solid black; border-radius: 25px; float: right; margin-top: 15vh; box-shadow: 1px 2px 10px 6px rgba(0,0,0,0.75);">
-        <div class="icon" style="display: inline-block; margin-top: 7vh;">
-          <i class="material-icons" style="font-size: 10vw; color: #3a77d2;">send</i>
+        <div class="icon" style="display: inline-block; margin-top: 10vh;">
+          <i class="material-icons" style="font-size: 18vh; color: #3a77d2;">send</i>
         </div>
       </button>
     </div>
