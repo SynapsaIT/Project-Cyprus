@@ -35,24 +35,22 @@ if(isset($_POST['is'])){
 }
 $att = dbRead($grp);
 
-echo '
+?>
+<div class="kontener">
+  <div class="banner" style="height: 12vh; width: 100%; display: inline-block; background-color: white; box-shadow: 1px 2px 30px 4px rgba(0,0,0,0.75);"><img src="tecomalogo.png" style="height: 12vh; padding: 5px; float: left;"/>
+    <div class="right-align" style="padding: 3vh;">
+
+      <form method=POST action="">
+        <input type="hidden" name="logout" value="1"/>
+        <span class="hide-on-small-only" style="font-size: 3vh; margin-right: 3vw;">Log In as <b><?php echo $_SESSION['user'] ?></b></span>
+        <button class="btn waves-effect waves-light" type="submit" name="action" style=" background-color: #021f47; height: 6vh;">Logout
+          <i class="material-icons right">exit_to_app</i>
+        </button>
+      </form>
+    </div>
+  </div>
 <div class="row form" style="background-color: green; height:100vh; overflow:hidden;">
 <div class="col s5 apnd">';
-// if(!isset($_POST['is'])){
-//   echo '<div class="row frange" style="margin-top:20px;">
-//     <div class="col s12">
-//       <p class="range-field">
-//         <input type="range" id="test5" name="val" min=1 max=100 value=1 default=1/>
-//       </p>
-//     </div>
-//     <div class="col s12 center-align">
-//       <button class="btn waves-effect waves-light" id="pval">OK
-//         <i class="material-icons right">send</i>
-//       </button>
-//     </div>
-//   </div>';
-// }
-echo '
   <form action="" method="POST" ENCTYPE="multipart/form-data" id="mform">
 
   <div id="all">
@@ -106,17 +104,15 @@ echo '
   <form method="POST" action="menu.php">
     <div class="submit col s12 center-align" style="padding: 10px; display: inline-block; height: auto;"><button class="btn waves-effect waves-light" type="submit" name="action" onclick="return confirm(\'Are you sure you would like close this ticket and delete all pictures?\');">Close task<i class="material-icons right">send</i></button></div>
   </form>';
-  // <div class="col s6 center-align"><button class=" btn waves-effect waves-light" id="prev">Prev<i class="material-icons right">send</i></button></div>
-  // <div class="col s6 center-align"><button class=" btn waves-effect waves-light" id="next">Next<i class="material-icons right">send</i></button></div>
-  echo '
 </div>
   <div class="col s7 slider" style="margin-top:1vh;">
-    <ul class="slides">';
+    <ul class="slides">
+      <?php
   foreach($att as $rekord){
     echo "<li style=\"\" class=\"imag\"><img src='pass/".$rekord[1]."/".$rekord[0]."' data-zoom-image='pass/".$rekord[1]."/".$rekord[0]."' class=\"imaga\" style=\"\"/></li>";
   }
-
-echo '</ul>
+  ?>
+</ul>
 <button class="btn waves-effect waves-light" type="submit" id="b1">
 <i class="material-icons">rotate_left</i>
 </button>
@@ -124,7 +120,8 @@ echo '</ul>
 <i class="material-icons">rotate_right</i>
 </button>
 </div>
-';
+</div>
+<?php
 
 
 function dbRead($grp){
@@ -271,5 +268,6 @@ function dbWrite($name, $surname, $sex, $dob, $pob, $passport, $doi, $doe, $iu){
     return tab;
   }
  </script>
+</div>
 </body>
 </html>
