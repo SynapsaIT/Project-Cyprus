@@ -7,6 +7,9 @@ if (!file_exists($dir) && !is_dir($dir)) {
   $max_rozmiar = 10240*10240;
   $total = count($_FILES['file']['name']);
   for($i = 0; $i < $total; $i++){
+    if ($i==0){
+      mkdir('pass/'.$l);
+    }
 
     if (is_uploaded_file($_FILES['file']['tmp_name'][$i])) {
         $path = $_FILES['file']['name'][$i];
@@ -15,22 +18,20 @@ if (!file_exists($dir) && !is_dir($dir)) {
             echo '<h1>Invalid file extension or file too large</h1>';
         }
         else {
+
         //     echo 'File uploaded successfully. File name: '.$_FILES['file']['name'][$i];
         //     echo '<br/>';
         //     if (isset($_FILES['file']['type'][$i])) {
         //         echo 'Type: '.$_FILES['file']['type'][$i].'<br/>';
         //     }
-             if ($i==0){
-               mkdir('pass/'.$l);
-               echo "<h1>File uploaded successfully</h1>";
-             }
+
              move_uploaded_file($_FILES['file']['tmp_name'][$i], 'pass/'.$l.'/'.$_FILES['file']['name'][$i]);
              dbAtt($_FILES['file']['name'][$i], $l);
         }
 
     }
     else {
-       echo '<h1>Error</h1>';
+       echo "<h1>File uploaded successfully</h1>";
     }
 
   }
@@ -41,7 +42,6 @@ else {
 function dbAtt($file, $group_id){
   global $db, $attachments_table;
   $sql = "INSERT INTO $attachments_table VALUES (NULL, '$file', '$group_id')";
-  echo $sql." ";
   if ($db->query($sql) === TRUE) {
     echo "New record created successfully";
   }

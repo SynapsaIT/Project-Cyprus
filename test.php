@@ -39,7 +39,7 @@
           <div class="icon" style="height: 20vh; width: 50vw; margin: 0 auto; text-align: center;">
             <i class="material-icons" style="font-size: 15vh; color: #3a77d2;margin-top: 2vh; ">add_a_photo</i>
           </div>
-          <input type="file" name="file[]"  class="in" multiple accept="image/*" />
+          <input type="file" name="file[]"  id="in" multiple accept="image/*" />
         </div>
 
         <button class="btn waves-effect waves-light" type="submit" name="action" style="background-color: white; height:20vh; width: 50vw; border: 2px solid black; border-radius: 25px; margin-top: 15vh; box-shadow: 1px 2px 10px 6px rgba(0,0,0,0.75);">
@@ -59,7 +59,7 @@
         <div class="icon" style="margin-top: 10vh; display: inline-block;">
           <i class="material-icons" style="font-size: 20vh; color: #3a77d2;">add_a_photo</i>
         </div>
-        <input type="file" name="file[]"  class="in" multiple accept="image/*" />
+        <input type="file" name="file[]"  id="in2" multiple accept="image/*" />
       </div>
 
       <button class="btn waves-effect waves-light" type="submit" name="action" style="background-color: white; margin-top: 15px; height:40vh; width: 15vw; border: 2px solid black; border-radius: 25px; float: right; margin-top: 15vh; box-shadow: 1px 2px 10px 6px rgba(0,0,0,0.75);">
@@ -112,11 +112,16 @@
             }
 
         }
-        $(".in").change(function(){
-            console.log("tu dziala");
+        $("#in2").change(function(){
             readURL(this);
         });
-        $(".in").click(function(){
+        $("#in2").click(function(){
+          $('.imgs').remove();
+        });
+        $("#in").change(function(){
+            readURL(this);
+        });
+        $("#in").click(function(){
           $('.imgs').remove();
         });
 
