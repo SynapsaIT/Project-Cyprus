@@ -30,6 +30,11 @@ if(isset($_GET['l'])){
   $grp = $_GET['l'];
 }
 
+if(isset($_POST['logout'])){
+  session_destroy();
+  header("Location: index.php");
+}
+
 if(isset($_POST['is'])){
   dbWrite($_POST['name'], $_POST['surname'], $_POST['sex'], $_POST['dob'], $_POST['pob'], $_POST['passport'], $_POST['doi'], $_POST['doe'], $_SESSION['user']);
 }
@@ -49,8 +54,8 @@ $att = dbRead($grp);
       </form>
     </div>
   </div>
-<div class="row form" style="background-color: green; height:100vh; overflow:hidden;">
-<div class="col s5 apnd">';
+<div class="row form" style="height:100vh; overflow:hidden; padding-top: 5vh;">
+<div class="col s5 apnd">
   <form action="" method="POST" ENCTYPE="multipart/form-data" id="mform">
 
   <div id="all">
@@ -99,10 +104,10 @@ $att = dbRead($grp);
       </div>
     </div>
     <input type="hidden" name="is"/>
-    <div class="submit col s12 center-align" style="padding: 10px; display: inline-block; height: auto;"><button class="btn waves-effect waves-light" type="submit" name="action">Submit<i class="material-icons right">send</i></button></div>
+    <div class="submit col s12 center-align" style="padding: 10px; display: inline-block; height: auto;"><button class="btn waves-effect waves-light" type="submit" name="action" style="background-color: #3a77d2;">Submit<i class="material-icons right">send</i></button></div>
   </form>
   <form method="POST" action="menu.php">
-    <div class="submit col s12 center-align" style="padding: 10px; display: inline-block; height: auto;"><button class="btn waves-effect waves-light" type="submit" name="action" onclick="return confirm(\'Are you sure you would like close this ticket and delete all pictures?\');">Close task<i class="material-icons right">send</i></button></div>
+    <div class="submit col s12 center-align" style="padding: 10px; display: inline-block; height: auto;"><button class="btn waves-effect waves-light" type="submit" name="action" onclick="return confirm(\'Are you sure you would like close this ticket and delete all pictures?\');" style="background-color: #3a77d2;">Close task<i class="material-icons right">send</i></button></div>
   </form>';
 </div>
   <div class="col s7 slider" style="margin-top:1vh;">
@@ -113,10 +118,10 @@ $att = dbRead($grp);
   }
   ?>
 </ul>
-<button class="btn waves-effect waves-light" type="submit" id="b1">
+<button class="btn waves-effect waves-light" type="submit" id="b1" style="background-color: #3a77d2;">
 <i class="material-icons">rotate_left</i>
 </button>
-<button class="btn waves-effect waves-light" type="submit" id="b2">
+<button class="btn waves-effect waves-light" type="submit" id="b2" style="background-color: #3a77d2;">
 <i class="material-icons">rotate_right</i>
 </button>
 </div>
@@ -192,7 +197,6 @@ function dbWrite($name, $surname, $sex, $dob, $pob, $passport, $doi, $doe, $iu){
        zoomWindowPosition: 9,
        responsive: true,
        tint: true
-
      });
      $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
      var value = 0;
