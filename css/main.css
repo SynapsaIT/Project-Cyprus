@@ -3,3 +3,7 @@
     height: auto;
     vertical-align: middle;
 }
+
+body{
+  background-color: red !important;
+}
