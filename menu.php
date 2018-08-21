@@ -87,7 +87,7 @@ echo'
           <input type=hidden name="l" id="l" value="'.md5(time()).'"/>'
           ?>
           <div class="submit" style="padding: 10px; display: inline-block; height: auto; float: right;">
-            <button class="btn waves-effect waves-light" type="submit" name="action" style="background-color: #3a77d2;">Generate and Copy
+            <button class="btn waves-effect waves-light generate" type="submit" name="action" style="background-color: #3a77d2;">Generate and Copy
             <i class="material-icons right">send</i>
             </button>
           </div>
