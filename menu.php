@@ -45,7 +45,7 @@ if(isset($_POST['logout'])){
 
       <form method=POST action="">
         <input type="hidden" name="logout" value="1"/>
-        <span class="hide-on-small-only" style="font-size: 3vh; margin-right: 3vw;">Current user: <b><?php echo $_SESSION['user'] ?></b></span>
+        <span class="hide-on-small-only" style="font-size: 3vh; margin-right: 3vw;">Log In as <b><?php echo $_SESSION['user'] ?></b></span>
         <button class="btn waves-effect waves-light" type="submit" name="action" style=" background-color: #021f47; height: 6vh;">Logout
           <i class="material-icons right">exit_to_app</i>
         </button>
