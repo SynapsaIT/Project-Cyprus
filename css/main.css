@@ -1,5 +1,62 @@
-.img-responsive {
-    max-width: 100%;
-    height: auto;
-    vertical-align: middle;
+body{
+  background-color: white;
+}
+
+
+.form{
+  width:350px;
+  height:auto;
+  margin: 0 auto;
+  transform: translate(0, 30%);
+}
+
+.form .submit{
+  padding: 10px;
+  display: inline-block;
+  height: auto;
+  float: right;
+}
+
+#logo {
+  width: 90%; display: block; margin-left: auto; margin-right: auto; padding-bottom: 8vh;
+}
+
+.submit .logout {
+  background-color: #021f47;
+}
+
+input[type=text] + label, input[type=password] + label, input[type=email] + label {
+  color: rgb(78, 78, 78);
+}
+input[type=text], .loginfield input[type=password]{
+  border-bottom: 1px solid rgb(78, 78, 78);
+  box-shadow: 0 1px 0 0 rgb(78, 78, 78);
+}
+
+input[type=text]:focus + label, input[type=password]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
+  color: #021f47 !important;
+}
+
+input[type=text]:focus, input[type=password]:focus, .materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #021f47 !important;
+  box-shadow: 0 1px 0 0 #021f47 !important;
+}
+ul.dropdown-content.select-dropdown li span {
+    color: #3a77d2;
+}
+input[type=email]:focus{
+  color: #3a77d2;
+  border-bottom: 1px solid #3a77d2 !important;
+  box-shadow: 0 1px 0 0 #3a77d2 !important;
+}
+
+input[type=email]:focus + label {
+  color: #3a77d2;
+}
+
+.datepicker-date-display{
+  background-color: #3a77d2;
+}
+td .is-today{
+  color: red;
 }

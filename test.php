@@ -7,17 +7,18 @@
       <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" type="text/css" href="css/main.css"/>
     </head>
+    <?php
 
+    $l = $_GET['l'];
+    if(!isset($_POST['file'])){
+    ?>
     <body class="row">
       <div class="kontener" style="background-image: url('backo.png'); background-size: cover; height: 100vh;">
         <div class="banner" style="height: 12vh; width: 100%; display: inline-block; background-color: white; box-shadow: 1px 2px 30px 4px rgba(0,0,0,0.75);"><img src="tecomalogo.png" style="height: 12vh; padding: 5px;"/> </div>
-    <form class="center-align" action=pass.php'.'?l='.$l.' method="POST" ENCTYPE="multipart/form-data" style="">
-<?php
+    <?php echo'<form class="center-align" action=pass.php'.'?l='.$l.' method="POST" ENCTYPE="multipart/form-data" style="">'; ?>
 
-$l = $_GET['l'];
-if(!isset($_POST['file'])){
-?>
 <div class="hide-on-large-only">
     <!-- Modal Structure -->
     <div id="modal1" class="modal modal-fixed-footer">
@@ -50,12 +51,9 @@ if(!isset($_POST['file'])){
     </div>
   </div>
 
-  <div class="hide-on-med-and-down form" style="height: auto; width: 100vw; margin: 0 auto;">
+  <div class="hide-on-med-and-down formx" style="position: absolute; height: auto; width: 100vw; top: 14vh;">
   <img id="up1" src="1.png" alt="send" style="width: 25vw; margin-top: 57vh; float: left; margin-left: 8vw;"/>
   <img id="send1" src="2.png" alt="send" style="width: 22vw; float: right; margin-right: 8vw; margin-bottom: 80vh;"/>
-
-
-
     <div style="width: 40vw; height: 75vh; margin: 0 auto; margin-top: 5vh;">
       <div class="file-field input-field uploader" style="background-color: white; height:40vh; width: 15vw; border: 2px solid black; border-radius: 25px; float: left; margin-top: 15vh; box-shadow: 1px 2px 10px 6px rgba(0,0,0,0.75);">
         <div class="icon" style="margin-top: 10vh; display: inline-block;">
@@ -79,9 +77,10 @@ if(!isset($_POST['file'])){
 }
 
 ?>
-<div id="ph" class="center-align" style="background-color: red; width:100vw; height:auto; margin:0 auto;"></div>
+
 </div>
-</div>
+<div id="ph" class="center-align" style="margin-top: 100vh; width:80vw; height:auto; margin: 0 auto;"></div>
+
 
 
   <script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
@@ -101,7 +100,7 @@ if(!isset($_POST['file'])){
                 console.log(i);
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                  $('#ph').append('<div class="imgs center-align" style="width:20vh; height:22vh;float:left;"><img class="materialboxed" src='+e.target.result+' style="width:20vh; height:22vh;padding: 5px; float: left; object-fit:cover;"></div>');
+                  $('#ph').append('<div class="imgs center-align" style="float:left;"><img class="materialboxed" src='+e.target.result+' style="max-width: 50%; padding: 5px; float: left; object-fit:cover;"></div>');
                   if(z==input.files.length-1){
                     $('.materialboxed').materialbox();
                     $('body').css('overflow-y','scroll');

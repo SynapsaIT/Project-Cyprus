@@ -5,7 +5,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8"/>
@@ -39,13 +39,13 @@ if(isset($_POST['logout'])){
 }
 ?>
 <div class="kontener">
-
-  <div class="banner" style="height: 12vh; width: 100%; display: inline-block; background-color: white; box-shadow: 1px 2px 30px 4px rgba(0,0,0,0.75);"><img src="tecomalogo.png" style="height: 12vh; padding: 5px; float: left;"/>
-    <div class="right-align" style="padding: 3vh;">
+  <div class="banner" style="height: 12vh; width: 100%; display: inline-block; background-color: white; box-shadow: 1px 2px 30px 4px rgba(0,0,0,0.75);">
+    <img src="tecomalogo.png" style="height: 12vh; padding: 5px; float: left;"/>
+    <div class="right-align" style="padding: 20px">
 
       <form method=POST action="">
         <input type="hidden" name="logout" value="1"/>
-        <span class="hide-on-small-only" style="font-size: 3vh; margin-right: 3vw;">Log In as <b><?php echo $_SESSION['user'] ?></b></span>
+        <span class="hide-on-small-only" style="font-size: 3vh; margin-right: 3vw;">Logged In as <b><?php echo $_SESSION['user'] ?></b></span>
         <button class="btn waves-effect waves-light" type="submit" name="action" style=" background-color: #021f47; height: 6vh;">Logout
           <i class="material-icons right">exit_to_app</i>
         </button>
@@ -53,10 +53,10 @@ if(isset($_POST['logout'])){
     </div>
   </div>
 
-  <div class="row form" style="height:100vh; width: 100vw; overflow:hidden; margin-top: 10vh;">
+  <div class="row form" style="height:auto; width: 100vw; overflow:hidden;">
     <form class="col s12" style="" action="form.php" method="GET" ENCTYPE="multipart/form-data">
       <div class="row" style="">
-        <div class="input-field col s4">
+        <div class="input-field col s12 m4">
           <select name="l" required>
             <option value="" disabled selected>Choose task</option>
             <?php
@@ -79,9 +79,9 @@ if(isset($_POST['logout'])){
     </form>
     <div class="row">
       <form method="POST" action="">
-        <div class="input-field inline col s6">
+        <div class="email input-field inline col s12 m6">
           <input value="" name="email" id="email" type="email" class="validate" required/>
-          <label class="active" for="email">Insert mail</label>
+          <label class="active mail" for="email">Insert mail</label>
 <?php
 echo'
           <input type=hidden name="l" id="l" value="'.md5(time()).'"/>'
@@ -132,7 +132,7 @@ function dbEmail($group, $email){
      if(!$('#email').hasClass("invalid") && $('#email').val()!= ''){
        var $temp = $("<input>");
        $("body").append($temp);
-       $temp.val("http://192.168.169.78:81/Project-Cyprus/test.php?l="+$('#l').val()).select();
+       $temp.val("http://localhost/test.php?l="+$('#l').val()).select();
        document.execCommand("copy");
        $temp.remove();
      }

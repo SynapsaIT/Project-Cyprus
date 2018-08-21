@@ -10,6 +10,7 @@
     <script type="text/javascript" src="jquery/jQueryRotate.js"></script>
     <script type="text/javascript" src="jquery/jquery.elevatezoom.js"></script>
     <script type="text/javascript" src="materialize/js/materialize.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8"/>
@@ -47,14 +48,14 @@ $att = dbRead($grp);
 
       <form method=POST action="">
         <input type="hidden" name="logout" value="1"/>
-        <span class="hide-on-small-only" style="font-size: 3vh; margin-right: 3vw;">Log In as <b><?php echo $_SESSION['user'] ?></b></span>
+        <span class="hide-on-small-only" style="font-size: 3vh; margin-right: 3vw;">Logged In as <b><?php echo $_SESSION['user'] ?></b></span>
         <button class="btn waves-effect waves-light" type="submit" name="action" style=" background-color: #021f47; height: 6vh;">Logout
           <i class="material-icons right">exit_to_app</i>
         </button>
       </form>
     </div>
   </div>
-<div class="row form" style="height:100vh; overflow:hidden; padding-top: 5vh;">
+<div class="row formz" style="height:100vh; overflow:hidden; padding-top: 5vh;">
 <div class="col s5 apnd">
   <form action="" method="POST" ENCTYPE="multipart/form-data" id="mform">
 
@@ -108,7 +109,7 @@ $att = dbRead($grp);
   </form>
   <form method="POST" action="menu.php">
     <div class="submit col s12 center-align" style="padding: 10px; display: inline-block; height: auto;"><button class="btn waves-effect waves-light" type="submit" name="action" onclick="return confirm(\'Are you sure you would like close this ticket and delete all pictures?\');" style="background-color: #3a77d2;">Close task<i class="material-icons right">send</i></button></div>
-  </form>';
+  </form>
 </div>
   <div class="col s7 slider" style="margin-top:1vh;">
     <ul class="slides">
