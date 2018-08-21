@@ -165,9 +165,9 @@ function dbWrite($name, $surname, $sex, $dob, $pob, $passport, $doi, $doe, $iu){
      // $("#prev").hide();
      // $("#all").hide();
      $('.datepicker').datepicker();
-     $('#doe').prop( "disabled", true );
-     $('#doi').change({
-       $('#doe').prop( "disabled", false );
+     $('#doe').prop('disabled', true);
+     $('#doi').change(function(){
+       $('#doe').prop('disabled', false);
        var Data = new Date($('#doi').val());
        $('#doe').datepicker({minDate: Data});
      });
