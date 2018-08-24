@@ -44,15 +44,50 @@ $att = dbRead($grp);
 ?>
 <div class="kontener">
   <div class="banner" style="height: 12vh; width: 100%; display: inline-block; background-color: white; box-shadow: 1px 2px 30px 4px rgba(0,0,0,0.75);"><img src="tecomalogo.png" style="height: 12vh; padding: 5px; float: left;"/>
-    <div class="right-align" style="padding: 3vh;">
+    <form id="log" method=POST action="">
+      <input type="hidden" name="logout" value="1"/>
+    </form>
 
-      <form method=POST action="">
-        <input type="hidden" name="logout" value="1"/>
-        <span class="hide-on-small-only" style="font-size: 3vh; margin-right: 3vw;">Logged In as <b><?php echo $_SESSION['user'] ?></b></span>
-        <button class="btn waves-effect waves-light" type="submit" name="action" style=" background-color: #021f47; height: 6vh;">Logout
-          <i class="material-icons right">exit_to_app</i>
-        </button>
-      </form>
+    <ul id="dropdown1" class="dropdown-content">
+      <li id="passwd"><a href="#!">Change password <i class="material-icons right">lock</i></a></li>
+      <li class="divider"></li>
+      <li><a data-constrainwidth="false" href="#" onclick="document.getElementById('log').submit()">Logout<i class="material-icons right">exit_to_app</i></a></li>
+    </ul>
+    <nav style="height: 12vh;">
+      <div class="tak">
+        <ul class="right">
+          <!-- Dropdown Trigger -->
+          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1" style="height: 12vh; color: black; font-size: 3vh; display: table-cell; vertical-align: middle;"><span class="hide-on-small-only" >Logged In as <b><?php echo $_SESSION['user'] ?></b></span><i class="material-icons right" style="margin-left: -5px;font-size: 6vh;">arrow_drop_down</i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div id="modal2" class="modal modal-fixed-footer hide-on-small-only">
+    <div class="modal-content" style="">
+      <div class="modal-banner">
+        <center><span align="center" style="font-size: 6vh; color: white;">Change<br/> Password</span></center>
+      </div>
+      <div class="changepass row" style="margin-top: 25px;">
+        <form id="passwordchanger" class="center-align col s12" action="" method="POST" ENCTYPE="multipart/form-data">
+          <div class="loginfield input-field col s12">
+            <input type=password id="oldpass" name=oldpass class="validate" required/>
+            <label for="password">Current Password</label>
+          </div>
+          <div class="loginfield input-field col s12">
+            <input type=password id="newpass1" name=newpass1 class="validate" required/>
+            <label for="password">New Password</label>
+          </div>
+          <div class="loginfield input-field col s12">
+            <input type=password id="newpass2" name=newpass2 class="validate" required/>
+            <label for="password">Confirm New Password</label>
+          </div>
+        </form>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="waves-effect waves-green btn-flat" onclick="document.getElementById('passwordchanger').submit()">Submit</>
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
     </div>
   </div>
 <div class="row formz" style="height:100vh; overflow:hidden; padding-top: 5vh;">
@@ -194,6 +229,7 @@ function dbWrite($name, $surname, $sex, $dob, $pob, $passport, $doi, $doe, $iu){
           default: return; // exit this handler for other keys
       }
      });
+     $(".imaga").css({"background-size": "contain", "width": "100%"});
      $(".imaga").elevateZoom({
        zoomWindowPosition: 9,
        responsive: true,
@@ -207,6 +243,9 @@ function dbWrite($name, $surname, $sex, $dob, $pob, $passport, $doi, $doe, $iu){
           click: function(){
             value -=90;
             $(".imaga").rotate({ animateTo:value})
+            var im=$(".imaga");
+            $(".imaga").css({"background-size": "contain", "background-repeat": "no-repeat"});
+            $(im).css({"width": im.height()});
           }
         }
       });
@@ -272,6 +311,11 @@ function dbWrite($name, $surname, $sex, $dob, $pob, $passport, $doi, $doe, $iu){
     }
     return tab;
   }
+  $('.dropdown-trigger').dropdown();
+  $('#passwd').click(function(){
+    $('.modal').modal();
+    $('#modal2').modal('open');
+  });
  </script>
 </div>
 </body>
