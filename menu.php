@@ -25,6 +25,14 @@ if(!isset($_SESSION['user']) || $_SESSION['user'] == ''){
   header("Location: error.php");
 }
 
+if(isset($_POST['clstsk'])){
+  clsTsk($_POST['clstsk']);
+  echo '<script type="text/javascript">
+    M.toast({html: "Task closed!"});
+  </script>
+  ';
+}
+
 if(isset($_POST['email'])){
   dbEmail($_POST['l'], $_POST['email']);
   echo '<script type="text/javascript">
@@ -178,6 +186,12 @@ function dbTskEmail($group){
 function dbEmail($group, $email){
   global $db, $emails_table;
   $sql = "INSERT INTO $emails_table VALUES ('$group', '$email') ";
+	$db->query($sql);
+}
+
+function clsTsk($grp){
+  global $db, $attachments_table;
+  $sql = "DELETE FROM $attachments_table WHERE group_id='$grp'";
 	$db->query($sql);
 }
 

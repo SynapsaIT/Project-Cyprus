@@ -143,6 +143,7 @@ $att = dbRead($grp);
     <div class="submit col s12 center-align" style="padding: 10px; display: inline-block; height: auto;"><button class="btn waves-effect waves-light" type="submit" name="action" style="background-color: #3a77d2;">Submit<i class="material-icons right">send</i></button></div>
   </form>
   <form method="POST" action="menu.php">
+    <input type=hidden name=clstsk value="<?php echo"$grp"; ?>" />
     <div class="submit col s12 center-align" style="padding: 10px; display: inline-block; height: auto;"><button class="btn waves-effect waves-light" type="submit" name="action" onclick="return confirm('Are you sure you would like close this ticket and delete all pictures?');" style="background-color: #3a77d2;">Close task<i class="material-icons right">send</i></button></div>
   </form>
 </div>
