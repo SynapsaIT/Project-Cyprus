@@ -105,22 +105,24 @@ nav{
   height: 8vh;
   font-size: 3vh;
   width: 90%;
+  padding-top: 1vh;
+  padding-left: 10px;
   border: 2px solid grey;
   border-radius: 10px;
 }
 .tasksdiv{
-  height: 8vh;
+  height: auto;
   font-size: 3vh;
   width: 95%;
-  padding-top: 1vh;
-  padding-left: 10px;
+
+
   background-color: red;
 }
 .taskslist:hover{
   box-shadow: 1px 2px 3px 4px rgba(0,0,0,0.75)
 }
 .taskslist2{
-  padding: 5px;
+  padding: 2px;
 }
 
 .formx{

@@ -290,9 +290,7 @@ function dbWrite($grp, $name, $surname, $sex, $dob, $pob, $passport, $doi, $doe,
           click: function(){
             value -=90;
             $(".imaga").rotate({ animateTo:value})
-            var im=$(".imaga");
-            $(".imaga").css({"background-size": "contain", "background-repeat": "no-repeat"});
-            $(im).css({"width": im.height()});
+
           }
         }
       });
@@ -348,6 +346,9 @@ function dbWrite($grp, $name, $surname, $sex, $dob, $pob, $passport, $doi, $doe,
       //   $("#doi").val(tab[cnt]['doi']);
       //   $("#doe").val(tab[cnt]['doe']);
       // });
+      var im=$(".imaga");
+      $(".imaga").css({"background-size": "contain", "background-repeat": "no-repeat"});
+      $(im).css({"width": im.height()});
 
   });
 

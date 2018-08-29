@@ -86,22 +86,42 @@ if(isset($_POST['logout'])){
           <div class="modal-banner">
             <center><span align="center" style="font-size: 6vh; color: white;">Change<br/> Password</span></center>
           </div>
-          <div class="changepass row" style="margin-top: 25px;">
-            <form id="passwordchanger" class="center-align col s12" action="" method="POST" ENCTYPE="multipart/form-data">
-              <div class="loginfield input-field col s12">
-                <input type=password id="oldpass" name=oldpass class="validate" required/>
-                <label for="password">Current Password</label>
-              </div>
-              <div class="loginfield input-field col s12">
-                <input type=password id="newpass1" name=newpass1 class="validate" required/>
-                <label for="password">New Password</label>
-              </div>
-              <div class="loginfield input-field col s12">
-                <input type=password id="newpass2" name=newpass2 class="validate" required/>
-                <label for="password">Confirm New Password</label>
-              </div>
-            </form>
+
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="waves-effect waves-green btn-flat" onclick="document.getElementById('passwordchanger').submit()">Submit</>
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+        </div>
+      </div>
+
+
+      <div id="modal3" class="modal modal-fixed-footer hide-on-small-only">
+        <div class="modal-content" style="">
+          <div class="modal-banner">
+            <center><span align="center" style="font-size: 6vh; color: white;">Change<br/> Password</span></center>
           </div>
+
+          <form class="col s12" style="" action="menu.php" method="POST" ENCTYPE="multipart/form-data">
+            <div class="row" style="">
+              <div class="input-field col s12 m10">
+                <select name="x" required>
+                  <option value="" disabled selected>Choose task</option>
+                  <?php
+                    $tsk = clsUsr();
+                    foreach($tsk as $rekord){
+                      echo '<option value="'.$rekord[0].'">'.$rekord[0].'</option>';
+                    }
+                  ?>
+                </select>
+                <div class="submit" style="padding: 10px; display: inline-block; height: auto; float: right;">
+                  <button class="btn waves-effect waves-light" type="submit" name="action" style="background-color: #3a77d2;">Submit
+                  <i class="material-icons right">send</i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+
 
         </div>
         <div class="modal-footer">
@@ -204,6 +224,16 @@ function clsTsk($grp){
 	$db->query($sql);
 }
 
+function clsUsr(){
+  global $db, $users_table;
+  $sql = "SELECT username FROM $users_table";
+  $result = $db->query($sql);
+	while($row = $result -> fetch_array()){
+	  $wynik[] = $row;
+	}
+  return $wynik;
+}
+
  ?>
 
  <script type="text/javascript">
@@ -230,7 +260,8 @@ function clsTsk($grp){
    });
 
    $('.assign').click(function(){
-     alert('dziaua');
+     $('.modal').modal();
+     $('#modal3').modal('open');
 
    });
 
