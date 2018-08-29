@@ -47,7 +47,7 @@ if(isset($_POST['logout'])){
 }
 
 ?>
-<div class="kontener">
+<div class="kontener row">
   <div class="banner" style="position: relative; height: 12vh; width: 100%; display: inline-block; background-color: white; box-shadow: 1px 2px 30px 4px rgba(0,0,0,0.75);">
     <img src="tecomalogo.png" style="height: 12vh; padding: 5px; float: left;"/>
 
@@ -109,18 +109,13 @@ if(isset($_POST['logout'])){
           <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
         </div>
       </div>
-      <?php
-        $oldpass = $_POST['oldpass'];
-        $newpass1 = $_POST['newpass1'];
-        $newpass2 = $_POST['newpass2'];
-       ?>
 
 
-  <div class="row form" style="height:auto; width: 100vw; overflow:hidden;">
-    <span style="padding-left: 10px; font-size: 3vh;"><b>Choose your task</b></span>
+  <div class="formx col s12 m6 left" style="height:auto; overflow:hidden;">
+    <span style="font-size: 3vh;"><b>Choose your task</b></span>
     <form class="col s12" style="" action="form.php" method="GET" ENCTYPE="multipart/form-data">
       <div class="row" style="">
-        <div class="input-field col s12 m4">
+        <div class="input-field col s12 m10">
           <select name="l" required>
             <option value="" disabled selected>Choose task</option>
             <?php
@@ -144,7 +139,7 @@ if(isset($_POST['logout'])){
     <div class="row">
       <span style="padding-left: 10px; font-size: 3vh;"><b>Generate link for Client</b></span>
       <form method="POST" action="">
-        <div class="email input-field inline col s12 m6">
+        <div class="email input-field inline col s12 m10">
           <input value="" name="email" id="email" type="email" class="validate" required/>
           <label class="active mail" for="email">Insert mail</label>
 <?php
@@ -158,6 +153,20 @@ echo'
           </div>
         </div>
       </form>
+    </div>
+  </div>
+  <div class="rightpanel col s5 right" style="height: 80vh; overflow: scroll">
+    <div class="rightbanner"><b>My Tasks</b></div>
+    <div class="rightcon">
+      <?php
+        $tsk = dbTsk();
+        foreach($tsk as $rekord){
+          echo '<div class="tasksdiv"><a class="taskslist2" href="form.php?l='.$rekord[0].'"><div class="taskslist">';
+          foreach(dbTskEmail($rekord[0]) as $rec){
+            echo $rec[0].' '.'</div></a><i class="assign material-icons right">edit</i></div>';
+          }
+        }
+      ?>
     </div>
   </div>
 </div>
@@ -219,6 +228,12 @@ function clsTsk($grp){
      $('.modal').modal();
      $('#modal2').modal('open');
    });
+
+   $('.assign').click(function(){
+     alert('dziaua');
+
+   });
+
   </script>
  </body>
 </html>

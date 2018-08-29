@@ -92,3 +92,44 @@ nav{
 .dropdown-content li > a, .dropdown-content li > span {
   color: #3a77d2;
 }
+.rightpanel{
+  margin-top: 20px;
+}
+.rightbanner{
+  color: black;
+  font-size: 4vh;
+  width: 100%;
+  text-align: center;
+}
+.taskslist{
+  height: 8vh;
+  font-size: 3vh;
+  width: 90%;
+  border: 2px solid grey;
+  border-radius: 10px;
+}
+.tasksdiv{
+  height: 8vh;
+  font-size: 3vh;
+  width: 95%;
+  padding-top: 1vh;
+  padding-left: 10px;
+  background-color: red;
+}
+.taskslist:hover{
+  box-shadow: 1px 2px 3px 4px rgba(0,0,0,0.75)
+}
+.taskslist2{
+  padding: 5px;
+}
+
+.formx{
+  margin-top: 100px;
+}
+.assign{
+  font-size: 4vh;
+  margin-right: 15px;
+}
+.assign:hover{
+  color: #3a77d2;
+}
