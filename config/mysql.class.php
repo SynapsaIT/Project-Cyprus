@@ -7,10 +7,10 @@ class MySQL {
         $this->link = mysql_connect($this->db_host, $this->db_user, $this->db_pwd)
         or die("Could not connect to mysql server: " . mysql_error());
         // connect to the database
-mysql_query('SET character_set_connection=utf8_polish_ci');
-mysql_query('SET character_set_client=utf8_polish_ci');
-mysql_query('SET character_set_results=utf8_polish_ci');
-mysql_query(' SET NAMES utf8 ');
+        mysql_query('SET character_set_connection=utf8_polish_ci');
+        mysql_query('SET character_set_client=utf8_polish_ci');
+        mysql_query('SET character_set_results=utf8_polish_ci');
+        mysql_query(' SET NAMES utf8 ');
         mysql_select_db($this->db_name, $this->link)
         or die("Database: database not found");
         $this->connections++;

@@ -37,13 +37,14 @@ if(isset($_POST['logout'])){
 }
 
 if(isset($_POST['is'])){
-  dbWrite($_POST['name'], $_POST['surname'], $_POST['sex'], $_POST['dob'], $_POST['pob'], $_POST['passport'], $_POST['doi'], $_POST['doe'], $_SESSION['user']);
+  dbWrite($grp, $_POST['name'], $_POST['surname'], $_POST['sex'], $_POST['dob'], $_POST['pob'], $_POST['passport'], $_POST['doi'], $_POST['doe'], $_SESSION['user']);
 }
+
 $att = dbRead($grp);
 
 ?>
 <div class="kontener">
-  <div class="banner" style="height: 12vh; width: 100%; display: inline-block; background-color: white; box-shadow: 1px 2px 30px 4px rgba(0,0,0,0.75);"><img src="tecomalogo.png" style="height: 12vh; padding: 5px; float: left;"/>
+  <div class="banner" style="height: 12vh; width: 100%; display: inline-block; background-color: white; box-shadow: 1px 2px 30px 4px rgba(0,0,0,0.75);"><a href="index.php"><img src="tecomalogo.png" style="height: 12vh; padding: 5px; float: left;"/></a>
     <form id="log" method=POST action="">
       <input type="hidden" name="logout" value="1"/>
     </form>
@@ -162,9 +163,18 @@ $att = dbRead($grp);
 <i class="material-icons">rotate_right</i>
 </button>
 </div>
+<div class="row col s12">
+<?php
+$taa = dbCRead($grp);
+if(!empty($taa)){
+  foreach($taa as $rekord){
+    echo $rekord[0].". ".$rekord[1]." ".$rekord[2]." ".$rekord[3]."</br>";
+  }
+}
+ ?>
+</div>
 </div>
 <?php
-
 
 function dbRead($grp){
   global $db, $attachments_table;
@@ -175,13 +185,49 @@ function dbRead($grp){
 	}
   return $wynik;
 }
-function dbWrite($name, $surname, $sex, $dob, $pob, $passport, $doi, $doe, $iu){
+function dbCreate($id){
+  global $db;
+  $id = "l".$id;
+  $query = "SELECT ID FROM $id";
+  $result = $db->query($query);
+  if(empty($result)){
+    $sql = "CREATE TABLE ".$id." (
+      ID int(10) AUTO_INCREMENT PRIMARY KEY,
+      name varchar(64),
+      surname varchar(64),
+      passport varchar(28)
+    )";
+  	$db->query($sql);
+  }
+}
+function dbCWrite($id, $name, $surname, $passport){
+  global $db;
+  $id = "l".$id;
+  $sql = "INSERT INTO $id VALUES (NULL, '$name', '$surname', '$passport')";
+  $db->query($sql);
+}
+function dbCRead($id){
+  global $db;
+  $id = "l".$id;
+  $sql = "SELECT * FROM $id";
+  $result = $db->query($sql);
+  if(!empty($result)){
+    while($row = $result -> fetch_array()){
+  	  $wynik[] = $row;
+  	}
+    return $wynik;
+  }
+}
+
+function dbWrite($grp, $name, $surname, $sex, $dob, $pob, $passport, $doi, $doe, $iu){
   global $db, $personaldata_table;
   $sql = "INSERT INTO $personaldata_table VALUES (NULL, '$name', '$surname', '$passport', DATE '$doi', DATE'$doe', $sex, DATE '$dob', '$pob', '$iu')";
   if ($db->query($sql) === TRUE) {
     echo '<script type="text/javascript">
       M.toast({html: "Uploaded to Database"});
     </script>';
+    dbCreate($grp);
+    dbCWrite($grp, $_POST['name'], $_POST['surname'], $_POST['passport']);
   }
   else{
     echo '<script type="text/javascript">
