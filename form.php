@@ -10,9 +10,6 @@
     <script type="text/javascript" src="jquery/jQueryRotate.js"></script>
     <script type="text/javascript" src="jquery/jquery.elevatezoom.js"></script>
     <script type="text/javascript" src="materialize/js/materialize.js"></script>
-
-
-
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
 
 
@@ -301,30 +298,12 @@ function dbWrite($grp, $name, $surname, $sex, $dob, $pob, $passport, $doi, $doe,
           default: return; // exit this handler for other keys
       }
      });
-<<<<<<< HEAD
     $(".imaga").css({"object-fit":"scale-down"});
      // $(".imaga").elevateZoom({
      //   zoomWindowPosition: 9,
      //   responsive: true,
      //   tint: true
      // });
-=======
-     $(".imaga").css({"background-size": "contain", "width": "100%"});
-     $(".imaga").elevateZoom({
-       zoomWindowPosition: 9,
-       responsive: true,
-       tint: true
-     });
-     $('#dob').focus(function(){
-       $('#dob').datepicker('open');
-     });
-     $('#doe').focus(function(){
-       $('#doe').datepicker('open');
-     });
-     $('#doi').focus(function(){
-       $('#doi').datepicker('open');
-     });
->>>>>>> dae6e92c6010bb2febbcd013b40b0d56e3fa4a7c
      $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
      var value = 0;
       $("#b1").rotate({
