@@ -8,16 +8,38 @@
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <link rel="stylesheet" type="text/css" href="css/main.css"/>
+      <script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
+      <script type="text/javascript" src="materialize/js/materialize.js"></script>
     </head>
     <?php
 
     $l = $_GET['l'];
+    if(isset($_GET['t'])){
+      if($_GET['t'] == 't'){
+        echo '<script type="text/javascript">
+        $(document).ready(function(){
+          $(".hide-on-large-only").hide();
+          $(".hide-on-med-and-down").hide();
+          $("#formupl").append("<center><div class=\"z-depth-5\" style=\"margin-top:30vh; background-color:white; width:40vw; padding-bottom:1px;\"><h1>Uploaded Succesfully!</h1></div></center>");
+        });
+        </script>';
+      }
+      if($_GET['t'] == 'f'){
+        echo '<script type="text/javascript">
+        $(document).ready(function(){
+          $(".hide-on-large-only").hide();
+          $(".hide-on-med-and-down").hide();
+          $("#formupl").append("<center><div class=\"z-depth-5\" style=\"margin-top:30vh; background-color:white; width:40vw; padding-bottom:1px;\"><h1>Your pictures have already been sent!</h1></div></center>");
+        });
+        </script>';
+      }
+    }
     if(!isset($_POST['file'])){
     ?>
     <body class="row">
       <div class="kontener" style="background-image: url('backo.png'); background-size: cover; height: 100vh;">
         <div class="banner" style="height: 12vh; width: 100%; display: inline-block; background-color: white; box-shadow: 1px 2px 30px 4px rgba(0,0,0,0.75);"><img src="tecomalogo.png" style="height: 12vh; padding: 5px;"/> </div>
-    <?php echo'<form class="center-align" action=pass.php'.'?l='.$l.' method="POST" ENCTYPE="multipart/form-data" style="">'; ?>
+    <?php echo'<form class="center-align" id="formupl" action=pass.php'.'?l='.$l.' method="POST" ENCTYPE="multipart/form-data" style="">'; ?>
 
 <div class="hide-on-large-only">
     <!-- Modal Structure -->
@@ -83,14 +105,13 @@
 
 
 
-  <script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
-  <script type="text/javascript" src="materialize/js/materialize.js"></script>
+
   <script type="text/javascript">
 
     $(document).ready(function(){
       $('.modal').modal();
       $('#modal1').modal('open');
-
+      $('')
     });
 
     function readURL(input) {

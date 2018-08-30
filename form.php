@@ -282,6 +282,15 @@ function dbWrite($grp, $name, $surname, $sex, $dob, $pob, $passport, $doi, $doe,
        responsive: true,
        tint: true
      });
+     $('#dob').focus(function(){
+       $('#dob').datepicker('open');
+     });
+     $('#doe').focus(function(){
+       $('#doe').datepicker('open');
+     });
+     $('#doi').focus(function(){
+       $('#doi').datepicker('open');
+     });
      $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
      var value = 0;
       $("#b1").rotate({

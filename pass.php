@@ -31,13 +31,13 @@ if (!file_exists($dir) && !is_dir($dir)) {
 
     }
     else {
-       echo "<h1>File uploaded successfully</h1>";
+       header('Location: test.php?l='.$l.'&t=t');
     }
 
   }
 }
 else {
-  echo " <h1>Sejm szit egzists</h1>";
+  header('Location: test.php?l='.$l.'&t=f');
 }
 function dbAtt($file, $group_id){
   global $db, $attachments_table;

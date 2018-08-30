@@ -46,6 +46,29 @@ if(isset($_POST['logout'])){
   header("Location: index.php");
 }
 
+if(isset($_POST['oldpass'])){
+  $old = sha1($_POST['oldpass']);
+  $pass = changePassFind($_SESSION['user']);
+  foreach($pass as $rekord){
+    $pass = $rekord[0];
+  }
+  if($old == $pass && $_POST['newpass1'] == $_POST['newpass2']){
+    $pcs = changePass($_SESSION['user'], sha1($_POST['newpass1']));
+    if($pcs == "PCS"){
+      echo '<script type="text/javascript">
+        M.toast({html: "Password changed successfully!"});
+      </script>
+      ';
+    }
+  }
+  else{
+    echo '<script type="text/javascript">
+      M.toast({html: "Old password does not match"});
+    </script>
+    ';
+  }
+}
+
 ?>
 <div class="kontener row">
   <div class="banner" style="position: relative; height: 12vh; width: 100%; display: inline-block; background-color: white; box-shadow: 1px 2px 30px 4px rgba(0,0,0,0.75);">
@@ -82,7 +105,7 @@ if(isset($_POST['logout'])){
   <div class="">
       <!-- Modal Structure -->
       <div id="modal2" class="modal modal-fixed-footer hide-on-small-only">
-        <div class="modal-content" style="">
+        <div class="modal-content" style="overflow:hidden;">
           <div class="modal-banner">
             <center><span align="center" style="font-size: 6vh; color: white;">Change<br/> Password</span></center>
           </div>
@@ -90,24 +113,26 @@ if(isset($_POST['logout'])){
             <form id="passwordchanger" class="center-align col s12" action="" method="POST" ENCTYPE="multipart/form-data">
               <div class="loginfield input-field col s12">
                 <input type=password id="oldpass" name=oldpass class="validate" required/>
-                <label for="password">Current Password</label>
+                <label for="oldpass">Current Password</label>
               </div>
               <div class="loginfield input-field col s12">
                 <input type=password id="newpass1" name=newpass1 class="validate" required/>
-                <label for="password">New Password</label>
+                <label for="newpass1">New Password</label>
               </div>
               <div class="loginfield input-field col s12">
                 <input type=password id="newpass2" name=newpass2 class="validate" required/>
-                <label for="password">Confirm New Password</label>
+                <label for="newpass2">Confirm New Password</label>
+                <span class="helper-text" data-error="Password not match" data-success="Password Match"></span>
               </div>
-            </form>
+
           </div>
 
         </div>
         <div class="modal-footer">
-          <a href="#!" class="waves-effect waves-green btn-flat" onclick="document.getElementById('passwordchanger').submit()">Submit</>
+          <button type="submit" class="waves-effect waves-green btn-flat">Submit</button>
           <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
         </div>
+        </form>
       </div>
 
 
@@ -245,6 +270,24 @@ function clsUsr(){
   $sql = "SELECT username FROM $users_table";
   $result = $db->query($sql);
 	while($row = $result -> fetch_array()){
+	  $wynik = $row;
+	}
+  return $wynik;
+}
+
+function changePass($user, $pass){
+  global $db, $users_table;
+  $sql = "UPDATE $users_table SET password='$pass' WHERE username='$user'";
+	if($db->query($sql) === TRUE){
+    return "PCS";
+  }
+}
+
+function changePassFind($user){
+  global $db, $users_table;
+  $sql = "SELECT password FROM $users_table WHERE username = '$user'";
+  $result = $db->query($sql);
+	while($row = $result -> fetch_array()){
 	  $wynik[] = $row;
 	}
   return $wynik;
@@ -280,6 +323,22 @@ function clsUsr(){
      $('#modal3').modal('open');
 
    });
+      $("#newpass1").on("focusout", function (e) {
+        if ($(this).val() != $("#newpass2").val()) {
+            $("#newpass2").removeClass("valid").addClass("invalid");
+        } else {
+            $("#newpass2").removeClass("invalid").addClass("valid");
+        }
+     });
+
+      $("#newpass2").on("keyup", function (e) {
+          if ($("#newpass1").val() != $(this).val()) {
+              $(this).removeClass("valid").addClass("invalid");
+          } else {
+              $(this).removeClass("invalid").addClass("valid");
+          }
+      });
+
 
   </script>
  </body>
