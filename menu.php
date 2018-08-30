@@ -34,7 +34,7 @@ if(isset($_POST['clstsk'])){
 }
 
 if(isset($_POST['email'])){
-  dbEmail($_POST['l'], $_POST['email']);
+  dbEmail($_POST['l'], $_POST['email'], $_SESSION['user']);
   echo '<script type="text/javascript">
     M.toast({html: "Copied!"});
   </script>
@@ -44,6 +44,10 @@ if(isset($_POST['email'])){
 if(isset($_POST['logout'])){
   session_destroy();
   header("Location: index.php");
+}
+
+if(isset($_POST['grpid'])){
+  changeUser($_POST['x'], $_POST['grpid']);
 }
 
 if(isset($_POST['oldpass'])){
@@ -142,15 +146,17 @@ if(isset($_POST['oldpass'])){
             <center><span align="center" style="font-size: 6vh; color: white;">Change<br/> Password</span></center>
           </div>
 
-          <form class="col s12" style="" action="menu.php" method="POST" ENCTYPE="multipart/form-data">
+          <form class="col s12" id="changeUsr" style="" action="menu.php" method="POST" ENCTYPE="multipart/form-data">
             <div class="row" style="">
               <div class="input-field col s12 m10">
                 <select name="x" required>
-                  <option value="" disabled selected>Choose task</option>
+                  <option value="" disabled selected>Choose user</option>
                   <?php
-                    $tsk = clsUsr();
-                    foreach($tsk as $rekord){
-                      echo '<option value="'.$rekord[0].'">'.$rekord[0].'</option>';
+                    $usery = clsUsr();
+                    foreach($usery as $rekord){
+                      if($rekord[0] != $_SESSION['user']){
+                        echo '<option value="'.$rekord[0].'">'.$rekord[0].'</option>';
+                      }
                     }
                   ?>
                 </select>
@@ -180,13 +186,12 @@ if(isset($_POST['oldpass'])){
           <select name="l" required>
             <option value="" disabled selected>Choose task</option>
             <?php
-              $tsk = dbTsk();
-              foreach($tsk as $rekord){
-                echo '<option value="'.$rekord[0].'">';
-                foreach(dbTskEmail($rekord[0]) as $rec){
-                  echo $rec[0].' '.'</option>';
+              if(dbTskEmail($_SESSION['user']) != "n"){
+                foreach(dbTskEmail($_SESSION['user']) as $rec){
+                  echo '<option value="'.$rec[0].'">'.$rec[1].'</option>';
                 }
               }
+
             ?>
           </select>
           <div class="submit" style="padding: 10px; display: inline-block; height: auto; float: right;">
@@ -220,42 +225,37 @@ echo'
     <div class="rightbanner"><b>My Tasks</b></div>
     <div class="rightcon">
       <?php
-        $tsk = dbTsk();
-        foreach($tsk as $rekord){
-          echo '<div class="tasksdiv"><a class="taskslist2" href="form.php?l='.$rekord[0].'"><div class="taskslist">';
-          foreach(dbTskEmail($rekord[0]) as $rec){
-            echo $rec[0].' '.'</div></a><i class="assign material-icons right">edit</i></div>';
-          }
+      if(dbTskEmail($_SESSION['user']) != "n"){
+        foreach(dbTskEmail($_SESSION['user']) as $rec){
+          echo '<div class="tasksdiv"><a class="taskslist2" href="form.php?l='.$rec[0].'"><div class="taskslist">';
+          echo $rec[1].' '.'</div></a><i class="assign material-icons right" value='.$rec[0].'>edit</i></div>';
         }
+      }
       ?>
     </div>
   </div>
 </div>
 <?php
 
-function dbTsk(){
-  global $db, $attachments_table;
-  $sql = "SELECT DISTINCT group_id FROM $attachments_table";
+
+function dbTskEmail($user){
+  global $db, $emails_table;
+  $sql = "SELECT group_id, email FROM $emails_table WHERE user='$user'";
   $result = $db->query($sql);
-	while($row = $result -> fetch_array()){
-	  $wynik[] = $row;
-	}
-  return $wynik;
+  if(mysqli_num_rows($result)===0){
+    return "n";
+  }
+  else{
+    while($row = $result -> fetch_array()){
+  	  $wynik[] = $row;
+  	}
+    return $wynik;
+  }
 }
 
-function dbTskEmail($group){
+function dbEmail($group, $email, $user){
   global $db, $emails_table;
-  $sql = "SELECT email FROM $emails_table WHERE group_id='$group'";
-  $result = $db->query($sql);
-	while($row = $result -> fetch_array()){
-	  $wynik[] = $row;
-	}
-  return $wynik;
-}
-
-function dbEmail($group, $email){
-  global $db, $emails_table;
-  $sql = "INSERT INTO $emails_table VALUES ('$group', '$email') ";
+  $sql = "INSERT INTO $emails_table VALUES ('$group', '$email', '$user') ";
 	$db->query($sql);
 }
 
@@ -270,9 +270,20 @@ function clsUsr(){
   $sql = "SELECT username FROM $users_table";
   $result = $db->query($sql);
 	while($row = $result -> fetch_array()){
-	  $wynik = $row;
+	  $wynik[] = $row;
 	}
   return $wynik;
+}
+
+function changeUser($user, $group){
+  global $db, $emails_table;
+  $sql = "UPDATE $emails_table SET user='$user' WHERE group_id='$group'";
+	if($db->query($sql) === TRUE){
+    echo '<script type="text/javascript">
+      M.toast({html: "Task user has been changed!"});
+    </script>
+    ';
+  }
 }
 
 function changePass($user, $pass){
@@ -319,6 +330,7 @@ function changePassFind($user){
    });
 
    $('.assign').click(function(){
+     $('#changeUsr').append('<input type="hidden" name="grpid" value="'+$(this).attr('value')+'"/>');
      $('.modal').modal();
      $('#modal3').modal('open');
 
