@@ -130,7 +130,7 @@ nav{
 }
 .assign{
   font-size: 4vh;
-  margin-right: 15px;
+  position: absolute;
 }
 .assign:hover{
   color: #3a77d2;

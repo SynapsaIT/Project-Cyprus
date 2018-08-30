@@ -86,6 +86,22 @@ if(isset($_POST['logout'])){
           <div class="modal-banner">
             <center><span align="center" style="font-size: 6vh; color: white;">Change<br/> Password</span></center>
           </div>
+          <div class="changepass row" style="margin-top: 25px;">
+            <form id="passwordchanger" class="center-align col s12" action="" method="POST" ENCTYPE="multipart/form-data">
+              <div class="loginfield input-field col s12">
+                <input type=password id="oldpass" name=oldpass class="validate" required/>
+                <label for="password">Current Password</label>
+              </div>
+              <div class="loginfield input-field col s12">
+                <input type=password id="newpass1" name=newpass1 class="validate" required/>
+                <label for="password">New Password</label>
+              </div>
+              <div class="loginfield input-field col s12">
+                <input type=password id="newpass2" name=newpass2 class="validate" required/>
+                <label for="password">Confirm New Password</label>
+              </div>
+            </form>
+          </div>
 
         </div>
         <div class="modal-footer">
