@@ -10,11 +10,17 @@
     <script type="text/javascript" src="jquery/jQueryRotate.js"></script>
     <script type="text/javascript" src="jquery/jquery.elevatezoom.js"></script>
     <script type="text/javascript" src="materialize/js/materialize.js"></script>
+
+
+
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
+
+
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8"/>
     <title></title>
+    <script type="text/javascript" src='jquery/jquery.slides.min.js'></script>
   </head>
   <body>
 
@@ -148,21 +154,40 @@ $att = dbRead($grp);
     <div class="submit col s12 center-align" style="padding: 10px; display: inline-block; height: auto;"><button class="btn waves-effect waves-light" type="submit" name="action" onclick="return confirm('Are you sure you would like close this ticket and delete all pictures?');" style="background-color: #3a77d2;">Close task<i class="material-icons right">send</i></button></div>
   </form>
 </div>
-  <div class="col s7 slider" style="margin-top:1vh;">
-    <ul class="slides">
-      <?php
-  foreach($att as $rekord){
-    echo "<li style=\"\" class=\"imag\"><img src='pass/".$rekord[1]."/".$rekord[0]."' data-zoom-image='pass/".$rekord[1]."/".$rekord[0]."' class=\"imaga\" style=\"\"/></li>";
-  }
-  ?>
-</ul>
+  <div id="slides" class="col s7" style="margin-top:1vh;">
+        <?php
+    foreach($att as $rekord){
+      echo "<img src='pass/".$rekord[1]."/".$rekord[0]."' class=\"imaga\" style=\"max-width: 100%; max-height: 100%;\"/>";
+    }
+    ?>
+
+
+</div>
+<script type="text/javascript" src="jquery/jquery.slides.min.js"></script>
+<script>
+function slide(){
+  $("#slides").slidesjs({
+    width: 100,
+    height: 56,
+    effect:{
+      fade:{
+        speed: 500
+      }
+    },
+    navigation: {
+      active: true,
+      effect: "fade"
+    },
+  });
+};
+</script>
+<script>slide();</script>
 <button class="btn waves-effect waves-light" type="submit" id="b1" style="background-color: #3a77d2;">
-<i class="material-icons">rotate_left</i>
+  <i class="material-icons">rotate_left</i>
 </button>
 <button class="btn waves-effect waves-light" type="submit" id="b2" style="background-color: #3a77d2;">
-<i class="material-icons">rotate_right</i>
+  <i class="material-icons">rotate_right</i>
 </button>
-</div>
 <div class="row col s12">
 <?php
 $taa = dbCRead($grp);
@@ -255,14 +280,14 @@ function dbWrite($grp, $name, $surname, $sex, $dob, $pob, $passport, $doi, $doe,
        $('#doe').datepicker({minDate: Data});
      });
      $('select').formSelect();
-     $('.slider').slider({
-       height: 450,
-       full_width: true
-     });
-     $('.slider').slider('pause');
-     $('.indicator-item').on('click',function(){
-       $('.slider').slider('pause');
-     });
+     // $('.slider').slider({
+     //   height: 450,
+     //   full_width: true
+     // });
+     // $('.slider').slider('pause');
+     // $('.indicator-item').on('click',function(){
+     //   $('.slider').slider('pause');
+     // });
      $(document).keydown(function(e) {
       switch(e.which) {
           case 37: // left
@@ -276,6 +301,14 @@ function dbWrite($grp, $name, $surname, $sex, $dob, $pob, $passport, $doi, $doe,
           default: return; // exit this handler for other keys
       }
      });
+<<<<<<< HEAD
+    $(".imaga").css({"object-fit":"scale-down"});
+     // $(".imaga").elevateZoom({
+     //   zoomWindowPosition: 9,
+     //   responsive: true,
+     //   tint: true
+     // });
+=======
      $(".imaga").css({"background-size": "contain", "width": "100%"});
      $(".imaga").elevateZoom({
        zoomWindowPosition: 9,
@@ -291,6 +324,7 @@ function dbWrite($grp, $name, $surname, $sex, $dob, $pob, $passport, $doi, $doe,
      $('#doi').focus(function(){
        $('#doi').datepicker('open');
      });
+>>>>>>> dae6e92c6010bb2febbcd013b40b0d56e3fa4a7c
      $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
      var value = 0;
       $("#b1").rotate({
@@ -299,7 +333,6 @@ function dbWrite($grp, $name, $surname, $sex, $dob, $pob, $passport, $doi, $doe,
           click: function(){
             value -=90;
             $(".imaga").rotate({ animateTo:value})
-
           }
         }
       });
@@ -356,8 +389,8 @@ function dbWrite($grp, $name, $surname, $sex, $dob, $pob, $passport, $doi, $doe,
       //   $("#doe").val(tab[cnt]['doe']);
       // });
       var im=$(".imaga");
-      $(".imaga").css({"background-size": "contain", "background-repeat": "no-repeat"});
-      $(im).css({"width": im.height()});
+      //$(".imaga").css({"background-size": "contain", "background-repeat": "no-repeat"});
+      //$(im).css({"width": im.height()});
 
   });
 
@@ -374,6 +407,8 @@ function dbWrite($grp, $name, $surname, $sex, $dob, $pob, $passport, $doi, $doe,
     $('#modal2').modal('open');
   });
  </script>
+
+
 </div>
 </body>
 </html>
