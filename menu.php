@@ -198,6 +198,7 @@ if(isset($_POST['oldpass'])){
             <button class="btn waves-effect waves-light" type="submit" name="action" style="background-color: #3a77d2;">Submit
             <i class="material-icons right">send</i>
             </button>
+            
           </div>
         </div>
       </div>
