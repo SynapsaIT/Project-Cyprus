@@ -98,12 +98,14 @@ if(isset($_POST['oldpass'])){
     <li><a data-constrainwidth="false" href="#" onclick="document.getElementById('log').submit()">Logout<i class="material-icons right">exit_to_app</i></a></li>
   </ul>
   <nav style="height: 12vh;">
-    <div class="tak">
+
+    <div class="tak" style="background-color: red;">
+
       <ul class="right">
         <!-- Dropdown Trigger -->
         <li><a class="dropdown-trigger" href="#!" data-target="dropdown1" style="height: 12vh; color: black; font-size: 3vh; display: table-cell; vertical-align: middle;"><span class="hide-on-small-only" >Logged In as <b><?php echo $_SESSION['user'] ?></b></span><i class="material-icons right" style="margin-left: -5px;font-size: 6vh;">arrow_drop_down</i></a></li>
       </ul>
-    </div>
+    </div><i class="material-icons" style="background-color: red; color: black; font-size: 5vh; display: table-cell; vertical-align: middle;float: right;" >contacts</i>
   </nav>
 
   <div class="">
@@ -143,12 +145,12 @@ if(isset($_POST['oldpass'])){
       <div id="modal3" class="modal modal-fixed-footer hide-on-small-only">
         <div class="modal-content" style="">
           <div class="modal-banner">
-            <center><span align="center" style="font-size: 6vh; color: white;">Change<br/> Password</span></center>
+            <center><span align="center" style="font-size: 6vh; color: white;">Task<br/> Management</span></center>
           </div>
 
           <form class="col s12" id="changeUsr" style="" action="menu.php" method="POST" ENCTYPE="multipart/form-data">
             <div class="row" style="">
-              <div class="input-field col s12 m10">
+              <div class="input-field col s12 m12">
                 <select name="x" required>
                   <option value="" disabled selected>Choose user</option>
                   <?php
@@ -160,11 +162,6 @@ if(isset($_POST['oldpass'])){
                     }
                   ?>
                 </select>
-                <div class="submit" style="padding: 10px; display: inline-block; height: auto; float: right;">
-                  <button class="btn waves-effect waves-light" type="submit" name="action" style="background-color: #3a77d2;">Submit
-                  <i class="material-icons right">send</i>
-                  </button>
-                </div>
               </div>
             </div>
           </form>
@@ -172,7 +169,7 @@ if(isset($_POST['oldpass'])){
 
         </div>
         <div class="modal-footer">
-          <a href="#!" class="waves-effect waves-green btn-flat" onclick="document.getElementById('passwordchanger').submit()">Submit</>
+          <a href="#!" class="waves-effect waves-green btn-flat" onclick="document.getElementById('changeUsr').submit()">Submit</>
           <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
         </div>
       </div>
@@ -198,7 +195,7 @@ if(isset($_POST['oldpass'])){
             <button class="btn waves-effect waves-light" type="submit" name="action" style="background-color: #3a77d2;">Submit
             <i class="material-icons right">send</i>
             </button>
-            
+
           </div>
         </div>
       </div>
@@ -222,7 +219,7 @@ echo'
       </form>
     </div>
   </div>
-  <div class="rightpanel col s5 right" style="height: 80vh; overflow: scroll">
+  <div class="rightpanel col s5 right hide-on-small-only" style="height: 80vh; overflow: scroll">
     <div class="rightbanner"><b>My Tasks</b></div>
     <div class="rightcon">
       <?php

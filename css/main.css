@@ -114,9 +114,6 @@ nav{
   height: auto;
   font-size: 3vh;
   width: 95%;
-
-
-  background-color: red;
 }
 .taskslist:hover{
   box-shadow: 1px 2px 3px 4px rgba(0,0,0,0.75)
@@ -130,10 +127,16 @@ nav{
 }
 .assign{
   font-size: 4vh;
-  position: absolute;
+  position: relative;
+  margin-top: -6.5vh;
+  margin-right: 5vw;
 }
 .assign:hover{
   color: #3a77d2;
+  cursor: pointer;
+}
+#modal3{
+  width: 30vw !important;
 }
 .imaga{
   position: absolute;
