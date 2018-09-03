@@ -181,6 +181,7 @@ if(isset($_POST['oldpass'])){
           <?php
             $k = 0;
             if($_SESSION['user'] == 'kotlet'){
+              echo sha1;
               if(shTable2() != "n"){
                 foreach(shTable2() as $rekord){
                   if($rekord[6] == 0){
