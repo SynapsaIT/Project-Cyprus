@@ -97,15 +97,20 @@ if(isset($_POST['oldpass'])){
     <li class="divider"></li>
     <li><a data-constrainwidth="false" href="#" onclick="document.getElementById('log').submit()">Logout<i class="material-icons right">exit_to_app</i></a></li>
   </ul>
+
   <nav style="height: 12vh;">
+    <div class="nav-wrapper">
 
-    <div class="tak" style="background-color: red;">
+      <div class="tak" style="background-color: red;">
 
-      <ul class="right">
-        <!-- Dropdown Trigger -->
-        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1" style="height: 12vh; color: black; font-size: 3vh; display: table-cell; vertical-align: middle;"><span class="hide-on-small-only" >Logged In as <b><?php echo $_SESSION['user'] ?></b></span><i class="material-icons right" style="margin-left: -5px;font-size: 6vh;">arrow_drop_down</i></a></li>
-      </ul>
-    </div><i class="material-icons" style="background-color: red; color: black; font-size: 5vh; display: table-cell; vertical-align: middle;float: right;" >contacts</i>
+        <ul class="right">
+          <!-- Dropdown Trigger -->
+          <li><a href="shclnt.php"><i class="material-icons" style="height: 12vh; color: black; font-size: 5vh; display: table-cell; vertical-align: middle;">contacts</i></a></li>
+          <li><a class="dropdown-trigger" href="#" data-target="dropdown1" style="height: 12vh; color: black; font-size: 3vh; display: table-cell; vertical-align: middle;"><span class="hide-on-small-only">Logged In as <b><?php echo $_SESSION['user'] ?></b></span><i class="material-icons right" style="margin-left: -5px;font-size: 6vh;">arrow_drop_down</i></a></li>
+
+        </ul>
+      </div>
+    </div>
   </nav>
 
   <div class="">
@@ -219,7 +224,7 @@ echo'
       </form>
     </div>
   </div>
-  <div class="rightpanel col s5 right hide-on-small-only" style="height: 80vh; overflow: scroll">
+  <div class="rightpanel col s5 right hide-on-small-only" style="height: 70vh; overflow: scroll">
     <div class="rightbanner"><b>My Tasks</b></div>
     <div class="rightcon">
       <?php

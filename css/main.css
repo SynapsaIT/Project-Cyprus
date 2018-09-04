@@ -92,8 +92,9 @@ nav{
 .dropdown-content li > a, .dropdown-content li > span {
   color: #3a77d2;
 }
+
 .rightpanel{
-  margin-top: 20px;
+  margin-top: 10vh;
 }
 .rightbanner{
   color: black;
@@ -102,7 +103,7 @@ nav{
   text-align: center;
 }
 .taskslist{
-  height: 8vh;
+  height: 9vh;
   font-size: 3vh;
   width: 90%;
   padding-top: 1vh;
@@ -123,7 +124,7 @@ nav{
 }
 
 .formx{
-  margin-top: 100px;
+  margin-top: 10vh;
 }
 .assign{
   font-size: 4vh;
