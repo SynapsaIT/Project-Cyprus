@@ -5,13 +5,13 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="css/main.css"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="zoom/dist/jquery.panzoom.js"></script>
 
     <script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="jquery/jQueryRotate.js"></script>
-    <script type="text/javascript" src="jquery/jquery.elevatezoom.js"></script>
     <script type="text/javascript" src="materialize/js/materialize.js"></script>
-    <link href="zoom/glassstyle.css" rel="stylesheet">
-   <script src="zoom/lightzoom.js"></script>
+
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
 
 
@@ -397,7 +397,9 @@ function dbWrite($grp, $name, $surname, $sex, $dob, $pob, $passport, $doi, $doe,
     $("#doe").datepicker('open');
   });
 
-  $('.imaga').lightzoom();
+
+  $(".imaga").panzoom();
+
  </script>
 
 
