@@ -20,7 +20,7 @@
         $(document).ready(function(){
           $(".hide-on-large-only").hide();
           $(".hide-on-med-and-down").hide();
-          $("#formupl").append("<center><div class=\"z-depth-5\" style=\"margin-top:30vh; background-color:white; width:40vw; padding-bottom:1px;\"><h1>Uploaded Succesfully!</h1></div></center>");
+          $("#formupl").append("<center><div class=\"z-depth-5\" style=\"margin-top:30vh; background-color:white; width:40vw; padding-bottom:1px;\"><span style=\"font-size: 5vw;\">Uploaded Succesfully!</span></div></center>");
         });
         </script>';
       }
@@ -29,7 +29,7 @@
         $(document).ready(function(){
           $(".hide-on-large-only").hide();
           $(".hide-on-med-and-down").hide();
-          $("#formupl").append("<center><div class=\"z-depth-5\" style=\"margin-top:30vh; background-color:white; width:40vw; padding-bottom:1px;\"><h1>Your pictures have already been sent!</h1></div></center>");
+          $("#formupl").append("<center><div class=\"z-depth-5\" style=\"margin-top:30vh; background-color:white; width:40vw; padding-bottom:1px;\"><span style=\"font-size: 5vw;\">Your pictures have already been sent!</h1></div></center>");
         });
         </script>';
       }

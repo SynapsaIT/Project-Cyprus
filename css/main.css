@@ -103,7 +103,7 @@ nav{
   text-align: center;
 }
 .taskslist{
-  height: 9vh;
+  height: 8vh;
   font-size: 3vh;
   width: 90%;
   padding-top: 1vh;
@@ -112,7 +112,7 @@ nav{
   border-radius: 10px;
 }
 .tasksdiv{
-  height: auto;
+  height: 11vh;
   font-size: 3vh;
   width: 95%;
 }
@@ -126,19 +126,23 @@ nav{
 .formx{
   margin-top: 10vh;
 }
+
 .assign{
   font-size: 4vh;
   position: relative;
   margin-top: -6.5vh;
   margin-right: 5vw;
 }
+
 .assign:hover{
   color: #3a77d2;
   cursor: pointer;
 }
+
 #modal3{
   width: 30vw !important;
 }
+
 .imaga{
   position: absolute;
     margin: auto;

@@ -225,7 +225,7 @@ echo'
     </div>
   </div>
   <div class="rightpanel col s5 right hide-on-small-only" style="height: 70vh; overflow: scroll">
-    <div class="rightbanner"><b>My Tasks</b></div>
+    <div class="rightbanner"><b>My open tasks</b></div>
     <div class="rightcon">
       <?php
       if(dbTskEmail($_SESSION['user']) != "n"){
