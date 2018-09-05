@@ -387,6 +387,16 @@ function dbWrite($grp, $name, $surname, $sex, $dob, $pob, $passport, $doi, $doe,
     $('#modal2').modal('open');
   });
 
+  $("#dob").focus(function(){
+    $("#dob").datepicker('open');
+  });
+  $("#doi").focus(function(){
+    $("#doi").datepicker('open');
+  });
+  $("#doe").focus(function(){
+    $("#doe").datepicker('open');
+  });
+
   $('.imaga').lightzoom();
  </script>
 
