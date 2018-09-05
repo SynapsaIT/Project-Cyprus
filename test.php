@@ -73,7 +73,7 @@
     </div>
   </div>
 
-  <div class="hide-on-med-and-down formx" style="position: absolute; height: auto; width: 100vw; top: 14vh;">
+  <div class="hide-on-med-and-down formtosend" style="position: absolute; height: auto; width: 100vw; top: 14vh;">
   <img id="up1" src="1.png" alt="send" style="width: 25vw; margin-top: 57vh; float: left; margin-left: 8vw;"/>
   <img id="send1" src="2.png" alt="send" style="width: 22vw; float: right; margin-right: 8vw; margin-bottom: 80vh;"/>
     <div style="width: 40vw; height: 75vh; margin: 0 auto; margin-top: 5vh;">
