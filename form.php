@@ -10,6 +10,8 @@
     <script type="text/javascript" src="jquery/jQueryRotate.js"></script>
     <script type="text/javascript" src="jquery/jquery.elevatezoom.js"></script>
     <script type="text/javascript" src="materialize/js/materialize.js"></script>
+    <link href="zoom/glassstyle.css" rel="stylesheet">
+   <script src="zoom/lightzoom.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
 
 
@@ -151,7 +153,7 @@ $att = dbRead($grp);
     <div class="submit col s12 center-align" style="padding: 10px; display: inline-block; height: auto;"><button class="btn waves-effect waves-light" type="submit" name="action" onclick="return confirm('Are you sure you would like close this ticket and delete all pictures?');" style="background-color: #3a77d2;">Close task<i class="material-icons right">send</i></button></div>
   </form>
 </div>
-  <div id="slides" class="col s7" style="margin-top:1vh;">
+  <div id='slides' class="col s7" style="margin-top:1vh; ">
         <?php
     foreach($att as $rekord){
       echo "<img src='pass/".$rekord[1]."/".$rekord[0]."' class=\"imaga\" style=\"max-width: 100%; max-height: 100%;\"/>";
@@ -264,7 +266,6 @@ function dbWrite($grp, $name, $surname, $sex, $dob, $pob, $passport, $doi, $doe,
  <script type="text/javascript">
 
    $(document).ready(function(){
-
 
      // $("#next").hide();
      // $("#prev").hide();
@@ -385,6 +386,8 @@ function dbWrite($grp, $name, $surname, $sex, $dob, $pob, $passport, $doi, $doe,
     $('.modal').modal();
     $('#modal2').modal('open');
   });
+
+  $('.imaga').lightzoom();
  </script>
 
 
