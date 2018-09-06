@@ -179,7 +179,7 @@ if(isset($_POST['oldpass'])){
 
         <tbody>
           <?php
-            $k = 0;
+            $k = 1;
             if($_SESSION['user'] == 'kotlet'){
               if(shTable2() != "n"){
                 foreach(shTable2() as $rekord){
