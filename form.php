@@ -6,7 +6,7 @@
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="css/main.css"/>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="zoom/dist/jquery.panzoom.js"></script>
+
 
     <script type="text/javascript" src="jquery/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="jquery/jQueryRotate.js"></script>
@@ -60,11 +60,17 @@ $att = dbRead($grp);
       <li><a data-constrainwidth="false" href="#" onclick="document.getElementById('log').submit()">Logout<i class="material-icons right">exit_to_app</i></a></li>
     </ul>
     <nav style="height: 12vh;">
-      <div class="tak">
-        <ul class="right">
-          <!-- Dropdown Trigger -->
-          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1" style="height: 12vh; color: black; font-size: 3vh; display: table-cell; vertical-align: middle;"><span class="hide-on-small-only" >Logged In as <b><?php echo $_SESSION['user'] ?></b></span><i class="material-icons right" style="margin-left: -5px;font-size: 6vh;">arrow_drop_down</i></a></li>
-        </ul>
+      <div class="nav-wrapper">
+
+        <div class="tak" style="">
+
+          <ul class="right">
+            <!-- Dropdown Trigger -->
+            <li><a href="shclnt.php"><i class="material-icons" style="height: 12vh; color: black; font-size: 5vh; display: table-cell; vertical-align: middle;">contacts</i></a></li>
+            <li><a class="dropdown-trigger" href="#" data-target="dropdown1" style="height: 12vh; color: black; font-size: 3vh; display: table-cell; vertical-align: middle;"><span class="hide-on-small-only">Logged In as <b><?php echo $_SESSION['user'] ?></b></span><i class="material-icons right" style="margin-left: -5px;font-size: 6vh;">arrow_drop_down</i></a></li>
+
+          </ul>
+        </div>
       </div>
     </nav>
   </div>
@@ -97,7 +103,8 @@ $att = dbRead($grp);
     </div>
   </div>
 <div class="row formz" style="height:100vh; overflow:hidden; padding-top: 5vh;">
-<div class="col s5 apnd">
+
+<div class="col m5 s12 apnd">
   <form action="" method="POST" ENCTYPE="multipart/form-data" id="mform">
 
   <div id="all">
@@ -153,7 +160,8 @@ $att = dbRead($grp);
     <div class="submit col s12 center-align" style="padding: 10px; display: inline-block; height: auto;"><button class="btn waves-effect waves-light" type="submit" name="action" onclick="return confirm('Are you sure you would like close this ticket and delete all pictures?');" style="background-color: #3a77d2;">Close task<i class="material-icons right">send</i></button></div>
   </form>
 </div>
-  <div id='slides' class="col s7" style="margin-top:1vh; ">
+  <div class="col m7 s12 rightban right">
+  <div id='slides' class="col s12 panzoom" style="margin-top:1vh; ">
         <?php
     foreach($att as $rekord){
       echo "<img src='pass/".$rekord[1]."/".$rekord[0]."' class=\"imaga\" style=\"max-width: 100%; max-height: 100%;\"/>";
@@ -187,6 +195,8 @@ function slide(){
 <button class="btn waves-effect waves-light" type="submit" id="b2" style="background-color: #3a77d2;">
   <i class="material-icons">rotate_right</i>
 </button>
+<button class="reset btn waves-effect waves-light" style="background-color: #3a77d2;">Reset zoom</button>
+</div>
 <div class="row col s12">
 <?php
 $taa = dbCRead($grp);
@@ -266,10 +276,29 @@ function dbWrite($grp, $name, $surname, $sex, $dob, $pob, $passport, $doi, $doe,
  <script type="text/javascript">
 
    $(document).ready(function(){
+    $(".imaga").panzoom();
+    (function() {
+            var $section = $('#slides');
+            var $panzoom = $section.find('.imaga').panzoom();
+            $panzoom.parent().on('mousewheel.focal', function( e ) {
+              e.preventDefault();
+              var delta = e.delta || e.originalEvent.wheelDelta;
+              var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
+              $panzoom.panzoom('zoom', zoomOut, {
+                increment: 0.1,
+                animate: false,
+                focal: e
+              });
+            });
+          })();
 
      // $("#next").hide();
      // $("#prev").hide();
      // $("#all").hide();
+     $('.reset').click(function(){
+       $('.imaga').panzoom("zoom", 1.0);
+       $(".imaga").rotate({ animateTo:0})
+     });
      $('.datepicker').datepicker();
      $('#doe').prop('disabled', true);
      $('#doi').change(function(){
@@ -398,10 +427,10 @@ function dbWrite($grp, $name, $surname, $sex, $dob, $pob, $passport, $doi, $doe,
   });
 
 
-  $(".imaga").panzoom();
 
  </script>
-
+    <script src="jquery/jquery.panzoom.js"></script>
+    <script src="jquery/jquery.mousewheel.js"></script>
 
 </div>
 </body>

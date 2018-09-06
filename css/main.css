@@ -1,5 +1,6 @@
 body{
   background-color: white;
+  height: auto;
 }
 
 a {
@@ -121,6 +122,8 @@ nav{
 }
 .taskslist2{
   padding: 2px;
+  height: 100%;
+  width: 100%;
 }
 
 .formx{
@@ -164,7 +167,7 @@ a.slidesjs-next,
 a.slidesjs-previous,
 a.slidesjs-play,
 a.slidesjs-stop {
-	background-image: url('css/btns-next-prev.png');
+	background-image: url('/css/btns-next-prev.png');
 	background-repeat: no-repeat;
 	display:block;
 	width:12px;
@@ -174,7 +177,6 @@ a.slidesjs-stop {
 	float: left;
 	margin-right:5px;
   margin-bottom: 5px;
-  background-color: red;
 }
 
 a.slidesjs-next {
