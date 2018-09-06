@@ -49,7 +49,8 @@ $att = dbRead($grp);
 
 ?>
 <div class="kontener">
-  <div class="banner" style="height: 12vh; width: 100%; display: inline-block; background-color: white; box-shadow: 1px 2px 30px 4px rgba(0,0,0,0.75);"><a href="index.php"><img src="tecomalogo.png" style="height: 12vh; padding: 5px; float: left;"/></a>
+  <div class="banner" style="height: 12vh; width: 100%; display: inline-block; background-color: white; box-shadow: 1px 2px 30px 4px rgba(0,0,0,0.75);">
+    <a href="index.php"><img src="tecomalogo.png" style="height: 12vh; padding: 5px; float: left;"/></a>
     <form id="log" method=POST action="">
       <input type="hidden" name="logout" value="1"/>
     </form>

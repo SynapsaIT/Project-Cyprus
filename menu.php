@@ -76,7 +76,7 @@ if(isset($_POST['oldpass'])){
 ?>
 <div class="kontener row">
   <div class="banner" style="position: relative; height: 12vh; width: 100%; display: inline-block; background-color: white; box-shadow: 1px 2px 30px 4px rgba(0,0,0,0.75);">
-    <img src="tecomalogo.png" style="height: 12vh; padding: 5px; float: left;"/>
+    <a href="index.php"><img src="tecomalogo.png" style="height: 12vh; padding: 5px; float: left;"/></a>
 
     <!-- <ul constrainWidth="false" id="dropdown1" class="dropdown-content" style="">
 
@@ -181,8 +181,8 @@ if(isset($_POST['oldpass'])){
 
 
   <div class="formx col s12 m6 left" style="height:auto; overflow:hidden;">
-    <span style="font-size: 3vh;"><b>Choose your task</b></span>
-    <form class="col s12" style="" action="form.php" method="GET" ENCTYPE="multipart/form-data">
+    <span class="hide-on-med-and-up" style="font-size: 3vh;"><b>Choose your task</b></span>
+    <form class="hide-on-med-and-up col s12" style="" action="form.php" method="GET" ENCTYPE="multipart/form-data">
       <div class="row" style="">
         <div class="input-field col s12 m10">
           <select name="l" required>
