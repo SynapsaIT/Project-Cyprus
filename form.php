@@ -49,9 +49,7 @@ $att = dbRead($grp);
 
 ?>
 <div class="kontener">
-  <div class="row">
   <div class="banner" style="height: 12vh; width: 100%; display: inline-block; background-color: white; box-shadow: 1px 2px 30px 4px rgba(0,0,0,0.75);">
-    <a href="index.php"><img src="tecomalogo.png" style="height: 12vh; padding: 5px; float: left"/></a>
     <form id="log" method=POST action="">
       <input type="hidden" name="logout" value="1"/>
     </form>
@@ -63,7 +61,7 @@ $att = dbRead($grp);
     </ul>
     <nav style="height: 12vh; width:100%;">
       <div class="nav-wrapper col s10">
-
+        <a href="index.php"><img src="tecomalogo.png" style="height: 12vh; padding: 5px; float: left"/></a>
         <div class="tak" >
 
           <ul class="right">
@@ -75,7 +73,6 @@ $att = dbRead($grp);
         </div>
       </div>
     </nav>
-  </div>
   </div>
   <div id="modal2" class="modal modal-fixed-footer hide-on-small-only">
     <div class="modal-content" style="">
