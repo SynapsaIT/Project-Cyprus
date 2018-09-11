@@ -27,6 +27,7 @@ if(!isset($_SESSION['user']) || $_SESSION['user'] == ''){
 
 if(isset($_POST['clstsk'])){
   clsTsk($_POST['clstsk']);
+  clsEmail($_POST['clstsk']);
   echo '<script type="text/javascript">
     M.toast({html: "Task closed!"});
   </script>
@@ -276,6 +277,12 @@ function clsUsr(){
 	  $wynik[] = $row;
 	}
   return $wynik;
+}
+
+function clsEmail($group){
+  global $db, $emails_table;
+  $sql = "UPDATE $emails_table SET user='0' WHERE group_id='$group'";
+	$db->query($sql);
 }
 
 function changeUser($user, $group){
