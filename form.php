@@ -164,7 +164,7 @@ $att = dbRead($grp);
   <div id='slides' class="col s12 panzoom" style="margin-top:1vh; ">
         <?php
     foreach($att as $rekord){
-      echo "<img src='pass/".$rekord[1]."/".$rekord[0]."' class=\"imaga\" style=\"max-width: 100%; max-height: 100%;\"/>";
+      echo "<img src='pass/".$rekord[1]."/".$rekord[0]."' class=\"imaga\" style=\"object-fit: cover; width: 100%; height: 100%;\"/>";
     }
     ?>
 
@@ -276,6 +276,7 @@ function dbWrite($grp, $name, $surname, $sex, $dob, $pob, $passport, $doi, $doe,
  <script type="text/javascript">
 
    $(document).ready(function(){
+    $(".slidesjs-previous").click();
     $(".imaga").panzoom();
     (function() {
             var $section = $('#slides');
@@ -318,12 +319,10 @@ function dbWrite($grp, $name, $surname, $sex, $dob, $pob, $passport, $doi, $doe,
      $(document).keydown(function(e) {
       switch(e.which) {
           case 37: // left
-            $('.slider').slider('prev');
-            $('.slider').slider('pause');
+            $(".slidesjs-previous").click();
           break;
           case 39: // right
-            $('.slider').slider('next');
-            $('.slider').slider('pause');
+            $(".slidesjs-next").click();
           break;
           default: return; // exit this handler for other keys
       }
